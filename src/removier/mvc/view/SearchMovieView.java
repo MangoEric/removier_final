@@ -51,8 +51,6 @@ public class SearchMovieView {
             case 1:
                 User updatedUserInfo = UserController.updatedUserInfo(user);
                 for (Review userReview : updatedUserInfo.getReviews()) {
-                    System.out.println(userReview.getMovie_id());
-                    System.out.println(movie.getMovie_pk());
                     if (userReview.getMovie_id() == movie.getMovie_pk()) {
                         ViewUtil.printMessage("이미 작성하신 리뷰가 존재합니다!!!!");
                         return;
