@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eclipse-userlibraries>
+  <library name="ojdbc8">
+    <archive path="/Users/jy/Desktop/edu/mydata/ojdbc8-full/ojdbc8.jar" />
+  </library>
+  <library name="osdt_cert">
+    <archive path="/Users/jy/Desktop/edu/mydata/ojdbc8-full/osdt_cert.jar" />
+  </library>
+  <library name="osdt_core">
+    <archive path="/Users/jy/Desktop/edu/mydata/ojdbc8-full/osdt_core.jar" />
+  </library>
+  <library name="ucp">
+    <archive path="/Users/jy/Desktop/edu/mydata/ojdbc8-full/ucp.jar" />
+  </library>
+  <library name="oraclepki">
+    <archive path="/Users/jy/Desktop/edu/mydata/ojdbc8-full/oraclepki.jar" />
+  </library>
+</eclipse-userlibraries>
+

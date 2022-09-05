@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component inherit-compiler-output="true" inheritJdk="true">
+	<output-test url="file://$MODULE_DIR$/out/test/removier_fake"/>
+	<exclude-output/>
+	<contentEntry url="file://$MODULE_DIR$"/>
+	<levels>
+		<level name="ojdbc8" value="project"/>
+		<level name="osdt_cert" value="project"/>
+		<level name="osdt_core" value="project"/>
+		<level name="ucp" value="project"/>
+		<level name="oraclepki" value="project"/>
+	</levels>
+</component>
