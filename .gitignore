@@ -181,24 +181,24 @@ fabric.properties
 *.tar.gz
 *.rar
 
-src/removier/resource/dbInfo.properties
-src/removier/mvc/util/DBUtil.java
-src/removier/mvc/util/ViewUtil.java
-resource/dbInfo.properties
+/src/removier/resource/dbInfo.properties
+/src/removier/mvc/util/DBUtil.java
+/src/removier/mvc/util/ViewUtil.java
+/resource/dbInfo.properties
 .idea/libraries/ojdbc8.xml
 .idea/libraries/oraclepki.xml
 .idea/libraries/osdt_cert.xml
 .idea/libraries/osdt_core.xml
 .idea/libraries/ucp.xml
-out/production/removier_fake/removier/mvc/util/DBUtil.class
-out/production/removier_fake/removier/mvc/util/ViewUtil.class
-out/production/removier_fake/removier/mvc/view/MenuView.class
-out/production/removier_fake/removier/mvc/view/SearchMovieView.class
-out/production/removier_fake/removier/mvc/view/SuccessView.class
-out/production/removier_fake/removier/mvc/view/ViewConst.class
-out/production/removier_fake/removier/resource/dbInfo.properties
-removier_fake.iml
-resource/dbInfo.properties
+/out/production/removier_fake/removier/mvc/util/DBUtil.class
+/out/production/removier_fake/removier/mvc/util/ViewUtil.class
+/out/production/removier_fake/removier/mvc/view/MenuView.class
+/out/production/removier_fake/removier/mvc/view/SearchMovieView.class
+/out/production/removier_fake/removier/mvc/view/SuccessView.class
+/out/production/removier_fake/removier/mvc/view/ViewConst.class
+/out/production/removier_fake/removier/resource/dbInfo.properties
+/removier_fake.iml
+/resource/dbInfo.properties
 
 
 
