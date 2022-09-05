@@ -104,7 +104,7 @@ public class UserDAOImpl implements UserDAO {
 		
 		try {
 			con = DBUtil.getConnection();
-			ps = con.prepareStatement("update member set user_pwd=?, user_name=?, user_fa=?, user_fg=?, user_phone=? where user_no=?");
+			ps = con.prepareStatement("update removier_user set password=?, name=?, favourite_actor=?, favourite_genre=?, phone=? where id=?");
 			ps.setString(1, loginUser.getPassword());
 			ps.setString(2, loginUser.getMember_name());
 			ps.setString(3, loginUser.getFavourite_actor());
