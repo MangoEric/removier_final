@@ -1,12 +1,14 @@
 package removier.mvc.view;
 
 
+
 import removier.mvc.controller.NoticeController;
 
 import removier.mvc.controller.AdminController;
 
 
 import removier.mvc.controller.UserController;
+
 
 
 import removier.mvc.dto.Admin;
@@ -124,6 +126,7 @@ public class MenuView {
         }
     }
 
+
     private static void showMyPage() {
         User loginUser = UserController.getLoginUser();
         while (true) {
@@ -134,7 +137,7 @@ public class MenuView {
                             + "[나의 최애 배우] " + loginUser.getFavourite_actor() + "\n"
                             + "[나의 선호 영화 장르] " + loginUser.getFavourite_genre() + "\n"
                             + "[연락처] " + loginUser.getPhone() + "\n\n\n"
-                            + "======= 1. 회원정보 수정 2. 내가 작성한 리뷰("+ loginUser.getReviews().size() +") 3.즐겨찾기 영화 4. 메인으로 ======\n"
+                            + "======= 1. 회원정보 수정 2. 내가 작성한 리뷰(" + loginUser.getReviews().size() + ") 3.즐겨찾기 영화 4. 메인으로 ======\n"
                             + "번호를 입력하세요 > "
                     )
             );
@@ -164,7 +167,9 @@ public class MenuView {
 
                 case 4:
                     return;
+
             }
+
         }
     }
 
@@ -186,7 +191,8 @@ public class MenuView {
             ViewUtil.newLine();
             switch (menu) {
                 case 1:
-
+                    SearchMovieView.showTopFive();
+                    break;
                 case 2:
                     SearchMovieView.searchMovie(user);
                     break;
@@ -239,5 +245,6 @@ public class MenuView {
         int notice_pk = Integer.parseInt(ViewUtil.input("삭제 게시물 번호 ▷ "));
         NoticeController.noticeDelete(notice_pk);
     }
+
 
 }

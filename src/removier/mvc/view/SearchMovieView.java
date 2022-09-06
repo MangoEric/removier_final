@@ -24,9 +24,12 @@ public class SearchMovieView {
                 MovieController.movieSelectByMovieTitle(movieName);
                 break;
             case 2:
-
+            	String actorName = searchActorName();
+                UserController.updatedUserInfo(user);
+                MovieController.movieSelectByActor(actorName);
                 break;
             case 3:
+
                 break;
 
         }
@@ -36,7 +39,12 @@ public class SearchMovieView {
         ViewUtil.printMessage("=== 영화이름을 검색하세요 (정확한 영화이름으로 검색하세요!!) ===");
         return ViewUtil.input("영화이름 > ");
     }
-
+    
+    private static String searchActorName() {
+        ViewUtil.printMessage("=== 배우이름을 검색하세요 ===");
+        return ViewUtil.input("배우이름 > ");
+    }
+    
     public static void movieResult(User user, Movie movie) throws Exception {
         if (movie.getReviewList() == null || movie.getReviewList().size() == 0) {
             ViewUtil.printMessage("작성된 리뷰가 없습니다.");
@@ -123,6 +131,14 @@ public class SearchMovieView {
         return review_star < 0 || review_star > 5;
     }
 
+
+    public static void showTopFive() {
+        MovieController.movieTopFive();
+    }
+
+    public static void showBestMyGenreMovie(User user) {
+        MovieController.showBestMyGenreMovie(user);
+    }
 }
 
 

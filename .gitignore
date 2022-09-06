@@ -1,6 +1,13 @@
 # Created by https://www.toptal.com/developers/gitignore/api/java,eclipse,gradle,maven,macos,windows,intellij+all
 # Edit at https://www.toptal.com/developers/gitignore?templates=java,eclipse,gradle,maven,macos,windows,intellij+all
 
+<<<<<<< HEAD
+=======
+
+*.properties
+DBUtil.java
+
+>>>>>>> jong_kang
 ### Eclipse ###
 .metadata
 bin/
@@ -155,10 +162,13 @@ fabric.properties
 !.idea/codeStyles
 !.idea/runConfigurations
 
+<<<<<<< HEAD
 !.resource
 !.src/removier/resource
 !.src/removier/util/*
 
+=======
+>>>>>>> jong_kang
 ### Java ###
 # Compiled class file
 *.class
@@ -181,6 +191,7 @@ fabric.properties
 *.tar.gz
 *.rar
 
+<<<<<<< HEAD
 *.properties
 DBUtil.java
 
@@ -192,6 +203,8 @@ DBUtil.java
 
 
 
+=======
+>>>>>>> jong_kang
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*

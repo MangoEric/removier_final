@@ -28,4 +28,5 @@ public interface MovieDAO {
 	 * */
 	List<Movie> movieSelectByGenre(String mov_genre) throws SQLException;
 
+    Movie showBestMyGenreMovie(String favourite_genre) throws SQLException;
 }
