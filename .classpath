@@ -11,5 +11,7 @@
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.USER_LIBRARY/osdt_cert"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.USER_LIBRARY/osdt_core"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.USER_LIBRARY/ucp"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/dms"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/simplefan-Javadoc-21c"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
