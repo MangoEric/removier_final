@@ -1,7 +1,10 @@
 package removier.mvc.view;
 
+
 import removier.mvc.dto.Movie;
+
 import removier.mvc.dto.User;
+
 
 import java.util.List;
 

@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class MovieDAOImpl implements MovieDAO{
     @Override
     public List<Movie> movieTopFive() throws SQLException {
@@ -100,8 +101,34 @@ public class MovieDAOImpl implements MovieDAO{
 
     @Override
     public List<Movie> movieSelectByActor(String actor_name) throws SQLException {
-        return null;
+    	Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<Movie> actor = new ArrayList<>();
+        String sql = "select * from actor where name = ?";
+
+        try {
+            con = DBUtil.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, actor_name);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+            	
+                int actor_pk = rs.getInt(1);
+                String actor_name1 = rs.getString(2);
+                String movie = rs.getString(3);
+               	
+            	
+            }
+        }finally {
+            DBUtil.close(con, ps, rs);
+        }
+
+        return actor;
     }
+
+    
 
     @Override
     public List<Movie> movieSelectByGenre(String mov_genre) throws SQLException {
