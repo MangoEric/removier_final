@@ -27,6 +27,7 @@ public class SearchMovieView {
 
                 break;
             case 3:
+
                 break;
 
         }
@@ -138,6 +139,14 @@ public class SearchMovieView {
         return review_star < 0 || review_star > 5;
     }
 
+
+    public static void showTopFive() {
+        MovieController.movieTopFive();
+    }
+
+    public static void showBestMyGenreMovie(User user) {
+        MovieController.showBestMyGenreMovie(user);
+    }
 }
 
 

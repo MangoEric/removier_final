@@ -1,9 +1,14 @@
 package removier.mvc.controller;
 
 import removier.mvc.dto.Movie;
+import removier.mvc.dto.User;
 import removier.mvc.service.MovieService;
 import removier.mvc.util.ViewUtil;
+import removier.mvc.view.EndView;
 import removier.mvc.view.SearchMovieView;
+
+import java.sql.PreparedStatement;
+import java.util.List;
 
 public class MovieController {
     private static MovieService movieService = new MovieService();
@@ -13,6 +18,13 @@ public class MovieController {
      * 영화 Top5 가져오기
      */
     public static void movieTopFive() {
+        try {
+            List<Movie> list = movieService.showTopFive();
+            EndView.printMovieTopFive(list);
+        }catch (Exception e) {
+
+        }
+
     }
 
     /**
@@ -55,6 +67,15 @@ public class MovieController {
      * 리뷰 삭제하기
      */
     public static void reviewDelete() {
+    }
+
+    public static void showBestMyGenreMovie(User user) {
+        try {
+            Movie movie = movieService.showBestMyGenreMovie(user);
+            SearchMovieView.movieResult(UserController.getLoginUser(), movie);
+        } catch (Exception e) {
+            ViewUtil.printMessage(e.getMessage());
+        }
     }
 
     /**

@@ -2,13 +2,9 @@ package removier.mvc.view;
 
 
 
+import removier.mvc.controller.*;
+
 import removier.mvc.controller.NoticeController;
-
-import removier.mvc.controller.AdminController;
-import removier.mvc.controller.NoticeController;
-
-
-import removier.mvc.controller.UserController;
 
 
 import removier.mvc.dto.Admin;
@@ -182,7 +178,7 @@ public class MenuView {
 
 	public static void printUserMenu(User user) {
 		while (true) {
-
+			SearchMovieView.showBestMyGenreMovie(user);
 			System.out.println();
 			System.out.println(" ▣ " + user.getLogingId() + " 로그인 중 ");
 			System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
@@ -195,7 +191,8 @@ public class MenuView {
 			System.out.println();
 			switch (menu) {
 			case 1:
-
+				SearchMovieView.showTopFive();
+				break;
 			case 2:
 				SearchMovieView.searchMovie(user);
 				break;
@@ -255,5 +252,6 @@ public class MenuView {
 		int notice_pk = Integer.parseInt(sc.nextLine());
 		NoticeController.noticeDelete(notice_pk);
 	}
+
 
 }

@@ -6,6 +6,7 @@ import removier.mvc.dto.Movie;
 import removier.mvc.dto.User;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class MovieService {
     private MovieDAO movieDAO = new MovieDAOImpl();
@@ -21,5 +22,26 @@ public class MovieService {
             return movie;
         }
 //        return Movie.getFixture();
+    }
+
+    /**
+     * 영화 top5 검색
+     * */
+
+    public List<Movie> showTopFive() throws Exception {
+
+        List<Movie> list = movieDAO.movieTopFive();
+
+        return list;
+    }
+
+
+    public Movie showBestMyGenreMovie(User user) throws Exception {
+        Movie movie = movieDAO.showBestMyGenreMovie(user.getFavourite_genre());
+        if (movie == null) {
+            throw new Exception("해당 영화가 존재하지 않습니다.");
+        } else {
+            return movie;
+        }
     }
 }
