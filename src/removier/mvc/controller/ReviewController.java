@@ -11,12 +11,14 @@ import java.sql.SQLException;
 public class ReviewController {
     private static ReviewService reviewService = new ReviewService();
 
-    public static void createReview(Review newReview) {
+    public static User createReview(Review newReview) {
+        User user = null;
         try {
-            reviewService.createReview(newReview);
+            user = reviewService.createReview(newReview);
         } catch (Exception e) {
             ViewUtil.errorMessage(e.getMessage());
         }
+        return user;
     }
 
     public static void updateReview(Review updateReview) {

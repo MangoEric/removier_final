@@ -135,6 +135,7 @@ public class MenuView {
                             + "[나의 선호 영화 장르] " + loginUser.getFavourite_genre() + "\n"
                             + "[연락처] " + loginUser.getPhone() + "\n\n\n"
                             + "======= 1. 회원정보 수정 2. 내가 작성한 리뷰("+ loginUser.getReviews().size() +") 3.즐겨찾기 영화 4. 메인으로 ======\n"
+                            + "======= 1. 회원정보 수정 2. 내가 작성한 리뷰("+ UserController.getLoginUser().getReviews().size() +") 3.즐겨찾기 영화 4. 메인으로 ======\n"
                             + "번호를 입력하세요 > "
                     )
             );

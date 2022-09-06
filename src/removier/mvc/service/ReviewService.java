@@ -11,11 +11,12 @@ import java.sql.SQLException;
 
 public class ReviewService {
     private ReviewDAO reviewDAO = new ReviewDAOImpl();
-    public void createReview(Review newReview) throws Exception {
-        int result = reviewDAO.reviewInsert(newReview);
-        if (result == 0) {
+    public User createReview(Review newReview) throws Exception {
+        User result = reviewDAO.reviewInsert(newReview);
+        if (result == null) {
             throw new SQLException("리뷰등록에 실패하였습니다.");
         }
+        return result;
     }
 
     public void updateReview(Review updateReview) throws SQLException {

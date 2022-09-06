@@ -11,7 +11,7 @@ public interface ReviewDAO {
     /**
      * 리뷰 등록하기
      * */
-    int reviewInsert(Review review) throws SQLException;
+    User reviewInsert(Review review) throws SQLException;
 
     /**
      * 리뷰 수정하기

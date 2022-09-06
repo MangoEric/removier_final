@@ -49,15 +49,17 @@ public class SearchMovieView {
         int input = Integer.parseInt(ViewUtil.input("선택 > "));
         switch (input) {
             case 1:
-                User updatedUserInfo = UserController.updatedUserInfo(user);
-                for (Review userReview : updatedUserInfo.getReviews()) {
+                //User updatedUserInfo = UserController.updatedUserInfo(user);
+
+                for (Review userReview : user.getReviews()) {
                     if (userReview.getMovie_id() == movie.getMovie_pk()) {
                         ViewUtil.printMessage("이미 작성하신 리뷰가 존재합니다!!!!");
                         return;
                     }
                 }
                 Review newReview = createReview(user, movie);
-                ReviewController.createReview(newReview);
+                User userInfo = ReviewController.createReview(newReview);
+                user.setReviews(userInfo.getReviews());
                 break;
             case 2:
                 User updatedUserInfo2 = UserController.updatedUserInfo(user);

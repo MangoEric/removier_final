@@ -1,5 +1,6 @@
 package removier.mvc.dao;
 
+import removier.mvc.controller.UserController;
 import removier.mvc.dto.Movie;
 import removier.mvc.dto.Review;
 import removier.mvc.dto.User;
@@ -10,13 +11,15 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class ReviewDAOImpl implements ReviewDAO {
+    UserDAO userDAO = new UserDAOImpl();
     @Override
-    public int reviewInsert(Review review) throws SQLException {
+    public User reviewInsert(Review review) throws SQLException {
         // int review_pk, int review_stars, String review_content, User user, Movie movie
         Connection con = null;
         PreparedStatement ps = null;
         int result = 0;
         String sql = "insert into review values (review_id_seq.nextval, ?, ?, ?, ?, ?, ?)";
+        User user = null;
 
         try {
             con = DBUtil.getConnection();
@@ -30,10 +33,13 @@ public class ReviewDAOImpl implements ReviewDAO {
 
             result = ps.executeUpdate();
 
+            user = userDAO.login(review.getUser());
+            UserController.getLoginUser().setReviews(review.getUser().getReviews());
+
         } finally {
             DBUtil.close(con, ps, null);
         }
-        return result;
+        return user;
     }
 
     @Override
