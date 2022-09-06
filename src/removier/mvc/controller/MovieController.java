@@ -1,8 +1,12 @@
 package removier.mvc.controller;
 
+import java.util.List;
+
+import removier.mvc.dto.Actor;
 import removier.mvc.dto.Movie;
 import removier.mvc.service.MovieService;
 import removier.mvc.util.ViewUtil;
+import removier.mvc.view.EndView;
 import removier.mvc.view.SearchMovieView;
 
 public class MovieController {
@@ -30,7 +34,13 @@ public class MovieController {
     /**
      * 영화 배우로 검색하기
      */
-    public static void movieSelectByActor() {
+    public static void movieSelectByActor(String actorName) {
+    	try {
+            List<Movie> actor = movieService.searchActorName(actorName);
+            
+        } catch (Exception e) {
+            ViewUtil.printMessage(e.getMessage());
+        }
     }
 
     /**
