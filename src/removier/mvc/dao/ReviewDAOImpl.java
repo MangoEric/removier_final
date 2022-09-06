@@ -16,7 +16,7 @@ public class ReviewDAOImpl implements ReviewDAO {
         Connection con = null;
         PreparedStatement ps = null;
         int result = 0;
-        String sql = "insert into review values (review_id_seq.nextval, ?, ?, ?, ?, ?)";
+        String sql = "insert into review values (review_id_seq.nextval, ?, ?, ?, ?, ?, ?)";
 
         try {
             con = DBUtil.getConnection();
@@ -26,6 +26,7 @@ public class ReviewDAOImpl implements ReviewDAO {
             ps.setInt(3, review.getUser().getMember_pk());
             ps.setString(4, review.getUser().getLogingId());
             ps.setInt(5, review.getMovie().getMovie_pk());
+            ps.setString(6, review.getMovie().getMov_title());
 
             result = ps.executeUpdate();
 

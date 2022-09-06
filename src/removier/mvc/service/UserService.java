@@ -47,5 +47,13 @@ public class UserService {
 			throw new SQLException("회원 정보 수정에 실패했습니다.");
 		}
 	}
+
+	public User getMyReview(User user) throws Exception {
+		User userInfo = userDao.getMyReview(user);
+		if (userInfo.getReviews().size() == 0) {
+			throw new Exception("작성하신 리뷰가 없습니다.");
+		}
+		return userInfo;
+	}
 }
 

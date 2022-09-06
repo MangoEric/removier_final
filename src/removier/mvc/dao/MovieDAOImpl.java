@@ -41,8 +41,12 @@ public class MovieDAOImpl implements MovieDAO{
                 String mov_plot = rs.getString(4);
                 String mov_date = rs.getString(5);
                 String mov_director = rs.getString(6);
+                String actor_name1 = rs.getString(7);
+                String actor_name2 = rs.getString(8);
+                String actor_name3 = rs.getString(9);
+                String actor_name4 = rs.getString(10);
 
-                movie = new Movie(movie_pk, mov_title, mov_genre, mov_plot, mov_date, mov_director);
+                movie = new Movie(movie_pk, mov_title, mov_genre, mov_plot, mov_date, mov_director, actor_name1, actor_name2, actor_name3, actor_name4);
                 List<Review> reviews = getReviews(con, movie.getMovie_pk());
                 movie.setReviewList(reviews);
             }

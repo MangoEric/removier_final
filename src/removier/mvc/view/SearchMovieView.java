@@ -60,8 +60,10 @@ public class SearchMovieView {
                 ReviewController.createReview(newReview);
                 break;
             case 2:
-                Review updateReview = updateReview(user, movie);
+                User updatedUserInfo2 = UserController.updatedUserInfo(user);
+                Review updateReview = updateReview(updatedUserInfo2, movie);
                 if (updateReview == null) {
+                    ViewUtil.printMessage("작성하신 리뷰가 없습니다.");
                     break;
                 }
                 ReviewController.updateReview(updateReview);
@@ -82,34 +84,19 @@ public class SearchMovieView {
     private static Review updateReview(User user, Movie movie) {
         int review_star = 0;
         String review_contents = null;
+        Review review = null;
 
         for (Review userReview : user.getReviews()) {
             if (userReview.getMovie_id() == movie.getMovie_pk()) {
                 OutputView.printUserReview(user, movie);
                 review_star = Integer.parseInt(ViewUtil.input("평점 > "));
                 review_contents = ViewUtil.input("리뷰 > ");
-                break;
-            } else {
-                ViewUtil.errorMessage("작성하신 리뷰가 없습니다.");
-                break;
+                userReview.setReview_stars(review_star);
+                userReview.setReview_content(review_contents);
+                review = userReview;
             }
         }
-
-//                Review updateReview = user.getReviews()
-//                        .stream()
-//                        .filter(r -> r.getMovie().getMov_title().equals(movie.getMov_title()))
-//                        .findFirst().get();
-
-        List<Review> reviews = user.getReviews();
-        for (Review review : reviews) {
-            if (review.getMovie_id() == movie.getMovie_pk()) {
-                review.setReview_stars(review_star);
-                review.setReview_content(review_contents);
-//                    updateReview = review;
-                return review;
-            }
-        }
-        return null;
+        return review;
     }
 
 

@@ -28,4 +28,7 @@ public interface UserDAO {
 	 * 로그 아웃
 	 * */
 	int logout(User loginUser) throws SQLException;
+
+	User getMyReview(User user) throws Exception;
+
 }

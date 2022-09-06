@@ -26,10 +26,6 @@ public class ViewUtil {
         System.out.println(message);
     }
 
-//    public static void printMessage(Object object) {
-//        System.out.println(object);
-//    }
-
 
     public static void newLine() {
         System.out.println();

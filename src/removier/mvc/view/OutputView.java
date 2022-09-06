@@ -20,12 +20,10 @@ public class OutputView {
 
     public static void printUserReview(User user, Movie movie) {
         Review review = null;
-        for (Review userReview : user.getReviews()) {
             for (Review movieReview : movie.getReviewList()) {
-                if (userReview.getUser_id() == movieReview.getUser_id()) {
-                    review = userReview;
+                if (user.getMember_pk() == movieReview.getUser_id()) {
+                    review = movieReview;
                     break;
-                }
             }
         }
         final StringBuilder sb = new StringBuilder();
@@ -33,5 +31,13 @@ public class OutputView {
         sb.append("[평점]  ").append(review.getReview_stars() + "/5").append("\n");
         sb.append("[리뷰]  ").append(review.getReview_content() + "\n");
         ViewUtil.printMessage(sb.toString());
+    }
+
+    public static void printUserReviews(User userInfo) {
+        List<Review> reviews = userInfo.getReviews();
+
+        for (int i = 0; i < reviews.size(); i++) {
+            ViewUtil.printMessage(reviews.get(i));
+        }
     }
 }

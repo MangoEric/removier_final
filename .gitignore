@@ -155,9 +155,9 @@ fabric.properties
 !.idea/codeStyles
 !.idea/runConfigurations
 
-.resource
-.src/removier/resource
-.src/removier/util/*
+!.resource
+!.src/removier/resource
+!.src/removier/util/*
 
 ### Java ###
 # Compiled class file

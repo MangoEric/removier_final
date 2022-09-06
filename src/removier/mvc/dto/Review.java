@@ -14,6 +14,7 @@ public class Review {
     private int user_id;
     private String userLoginId;
     private int movie_id;
+    private String movieTitle;
 
     public Review() {
     }
@@ -25,6 +26,16 @@ public class Review {
         this.movie = movie;
     }
 
+    public Review(int review_pk, int review_stars, String review_content, int user_id, String userLoginId, int movie_id, String movieTitle) {
+        this.review_pk = review_pk;
+        this.review_stars = review_stars;
+        this.review_content = review_content;
+        this.user_id = user_id;
+        this.userLoginId = userLoginId;
+        this.movie_id = movie_id;
+        this.movieTitle = movieTitle;
+    }
+
     public Review(int review_pk, int review_stars, String review_content, int user_id, String userLoginId, int movie_id) {
         this.review_pk = review_pk;
         this.review_stars = review_stars;
@@ -34,9 +45,7 @@ public class Review {
         this.movie_id = movie_id;
     }
 
-
-
-//    public static Review getFixture(User user, Movie movie) {
+    //    public static Review getFixture(User user, Movie movie) {
 //        return new Review(1, 5, "좋아요", user, movie);
 //    }
 
@@ -105,19 +114,21 @@ public class Review {
         this.movie_id = movie_id;
     }
 
+    public String getMovieTitle() {
+        return movieTitle;
+    }
 
+    public void setMovieTitle(String movieTitle) {
+        this.movieTitle = movieTitle;
+    }
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Review{");
-        sb.append("review_pk=").append(review_pk);
-        sb.append(", review_stars=").append(review_stars);
-        sb.append(", review_content='").append(review_content).append('\'');
-        sb.append(", user=").append(user);
-        sb.append(", movie=").append(movie);
-        sb.append(", user_id=").append(user_id);
-        sb.append(", movie_id=").append(movie_id);
-        sb.append('}');
+        final StringBuilder sb = new StringBuilder();
+        sb.append("[영화]  ").append(movieTitle + "\t\n");
+        sb.append("[작성자]  ").append(userLoginId + "\t");
+        sb.append("[평점]  ").append(review_stars + "/5").append("\n");
+        sb.append("[리뷰]  ").append(review_content + "\n");
         return sb.toString();
     }
 }
