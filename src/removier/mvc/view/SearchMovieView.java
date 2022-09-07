@@ -20,81 +20,105 @@ public class SearchMovieView {
         switch (input) {
             case 1:
                 String movieName = searchMovieTitle();
-                UserController.updatedUserInfo(user);
+//                UserController.updatedUserInfo(user);
                 MovieController.movieSelectByMovieTitle(movieName);
                 break;
             case 2:
-            	String actorName = searchActorName();
-                UserController.updatedUserInfo(user);
+                String actorName = searchActorName();
+//                UserController.updatedUserInfo(user);
                 MovieController.movieSelectByActor(actorName);
                 break;
             case 3:
-            	String movieGenre = searchMovieGenre();
-            	MovieController.movieSelectByGenre(movieGenre);
+                String movieGenre = searchMovieGenre();
+                MovieController.movieSelectByGenre(movieGenre);
                 break;
 
         }
     }
 
     private static String searchMovieGenre() {
-    	 ViewUtil.printMessage("================ 영화장르를 검색하세요 ================");
-    	 System.out.println();
-         return ViewUtil.input("영화장르 ▶ ");  
-         
-	}
+        ViewUtil.printMessage("================ 영화장르를 검색하세요 ================");
+        System.out.println();
+        return ViewUtil.input("영화장르 ▶ ");
 
-	private static String searchMovieTitle() {
+    }
+
+    private static String searchMovieTitle() {
         ViewUtil.printMessage("=== 영화이름을 검색하세요 (정확한 영화이름으로 검색하세요!!) ===");
         return ViewUtil.input("영화이름 > ");
     }
-    
+
     private static String searchActorName() {
         ViewUtil.printMessage("=== 배우이름을 검색하세요 ===");
         return ViewUtil.input("배우이름 > ");
     }
-    
+
     public static void movieResult(User user, Movie movie) throws Exception {
-            EndView.printMovieInfo(movie);
+        boolean run = true;
+        while (run) {
+            User updatedUser = UserController.updatedUserInfo(user);
+            Movie updatedMovie = MovieController.updatedMovieInfo(movie);
+            EndView.printMovieInfo(updatedMovie);
 
+            if (updatedMovie.getReviewList() == null || updatedMovie.getReviewList().size() == 0) {
+                ViewUtil.printMessage("작성된 리뷰가 없습니다.");
+            } else {
+                OutputView.printMovieReview(updatedMovie.getReviewList());
+            }
 
+            ViewUtil.printMessage("=== 1. 리뷰 작성  2. 리뷰 수정하기  3. 리뷰 삭제하기  4. 즐겨찾기  5. 메인으로 ===");
 
-
-        if (movie.getReviewList() == null || movie.getReviewList().size() == 0) {
-            ViewUtil.printMessage("작성된 리뷰가 없습니다.");
-        } else {
-            OutputView.printMovieReview(movie.getReviewList());
-        }
-
-        ViewUtil.printMessage("=== 1. 리뷰 작성  2. 리뷰 수정하기  3. 리뷰 삭제하기  4. 즐겨찾기  5. 메인으로 ===");
-
-        int input = Integer.parseInt(ViewUtil.input("선택 > "));
-        switch (input) {
-            case 1:
-                User updatedUserInfo = UserController.updatedUserInfo(user);
-                for (Review userReview : updatedUserInfo.getReviews()) {
-                    if (userReview.getMovie_id() == movie.getMovie_pk()) {
-                        ViewUtil.printMessage("이미 작성하신 리뷰가 존재합니다!!!!");
-                        return;
+            int input = Integer.parseInt(ViewUtil.input("선택 > "));
+            switch (input) {
+                case 1:
+                    int result = 0;
+                    User updatedUserInfo = UserController.updatedUserInfo(updatedUser);
+                    for (Review userReview : updatedUserInfo.getReviews()) {
+                        if (userReview.getMovie_id() == updatedMovie.getMovie_pk()) {
+                            result = 1;
+                        }
                     }
-                }
-                Review newReview = createReview(user, movie);
-                ReviewController.createReview(newReview);
-                break;
-            case 2:
-                User updatedUserInfo2 = UserController.updatedUserInfo(user);
-                Review updateReview = updateReview(updatedUserInfo2, movie);
-                if (updateReview == null) {
-                    ViewUtil.printMessage("작성하신 리뷰가 없습니다.");
-                    break;
-                }
-                ReviewController.updateReview(updateReview);
-                break;
-            case 3:
-                deleteReview(user, movie);
-                break;
-            case 4:
-                break;
+                    if (result == 1) {
+                        ViewUtil.printMessage("이미 작성하신 리뷰가 존재합니다!!!!");
+                        break;
+                    }
 
+                    Review newReview = createReview(updatedUser, updatedMovie);
+                    ReviewController.createReview(newReview);
+                    break;
+                case 2:
+                    User updatedUserInfo2 = UserController.updatedUserInfo(updatedUser);
+                    Review updateReview = updateReview(updatedUserInfo2, updatedMovie);
+                    if (updateReview == null) {
+                        ViewUtil.printMessage("작성하신 리뷰가 없습니다.");
+                        break;
+                    }
+                    ReviewController.updateReview(updateReview);
+                    break;
+                case 3:
+                    int deleteResult = 0;
+                    User updatedUserInfo3 = UserController.updatedUserInfo(updatedUser);
+                    for (Review review : updatedMovie.getReviewList())
+                        if (review.getUser_id() == updatedUserInfo3.getMember_pk()) {
+                            deleteResult = 1;
+                        }
+                    if (deleteResult == 1) {
+                        if (Integer.parseInt(ViewUtil.input("정말 삭제하시겠습니까? \n ( 메인으로가기 : 1 || 삭제하기 : 2 ) > ")) == 2) {
+                            deleteReview(updatedUser, updatedMovie);
+                            break;
+                        } else {
+                            break;
+                        }
+                    } else {
+                        ViewUtil.printMessage("삭제하실 리뷰가 없습니다.");
+                        break;
+                    }
+                case 4:
+                    break;
+                case 5:
+                    run = false;
+
+            }
         }
     }
 

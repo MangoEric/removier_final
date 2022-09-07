@@ -1,5 +1,6 @@
 package removier.mvc.dao;
 
+import removier.mvc.controller.UserController;
 import removier.mvc.dto.Movie;
 import removier.mvc.dto.Review;
 import removier.mvc.dto.User;
@@ -50,6 +51,7 @@ public class ReviewDAOImpl implements ReviewDAO {
             ps.setInt(1, updateReview.getReview_stars());
             ps.setString(2, updateReview.getReview_content());
 
+
             result = ps.executeUpdate();
 
         } finally {
@@ -70,6 +72,7 @@ public class ReviewDAOImpl implements ReviewDAO {
             ps.setInt(1, movie.getMovie_pk());
             ps.setInt(2, user.getMember_pk());
             result = ps.executeUpdate();
+
 
         } finally {
             DBUtil.close(con, ps, null);

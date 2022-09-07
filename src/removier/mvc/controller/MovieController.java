@@ -78,10 +78,15 @@ public class MovieController {
         }
     }
 
-    /**
-     * 영화이름 검색하기
-     *
-     * @param movieName
-     */
+    public static Movie updatedMovieInfo(Movie movie) {
+        Movie updatedMovieInfo = null;
+        try {
+            updatedMovieInfo = movieService.updatedMovieInfo(movie);
+        } catch (Exception e) {
+            ViewUtil.printMessage(e.getMessage());
+        }
+        return updatedMovieInfo;
+    }
+
 
 }

@@ -34,6 +34,7 @@ public class ReviewController {
         } catch (SQLException e) {
             ViewUtil.errorMessage(e.getMessage());
         }
+
     }
 
 }

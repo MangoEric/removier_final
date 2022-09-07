@@ -20,7 +20,10 @@ public class DBUtil {
 			//외부 properteis파일 로딩하기
 
 
-			proFile.load(new FileInputStream("/Users/jy/Desktop/removier_fake/src/removier/resource/dbInfo.properties"));
+			proFile.load(new FileInputStream("/Users/nonoro/project/1st_mini_project_final/src/removier/resource/dbInfo.properties"));
+
+			//종영님
+//			proFile.load(new FileInputStream("/Users/jy/Desktop/removier_fake/src/removier/resource/dbInfo.properties"));
 
 
 			Class.forName(proFile.getProperty("driverName"));
