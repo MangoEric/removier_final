@@ -1,14 +1,12 @@
 package removier.mvc.view;
 
 
-
 import removier.mvc.controller.NoticeController;
 
 import removier.mvc.controller.AdminController;
 
 
 import removier.mvc.controller.UserController;
-
 
 
 import removier.mvc.dto.Admin;
