@@ -10,13 +10,15 @@ import removier.mvc.service.MovieService;
 import removier.mvc.service.UserService;
 import removier.mvc.util.ViewUtil;
 import removier.mvc.view.MenuView;
+import removier.mvc.view.OutputView;
 import removier.mvc.view.SuccessView;
 import removier.mvc.view.FailView;
 
 public class UserController {
 
-	private static UserService userService = new UserService();
-	private static User loginUser;
+    private static UserService userService = new UserService();
+    private static User loginUser;
+
 
 
 	public static User getLoginUser() {
@@ -33,9 +35,11 @@ public class UserController {
 		} catch (Exception e) {
 			ViewUtil.errorMessage(e.getMessage());
 		}   
+
     }
-    
+
     /**
+
 	 * 회원 가입
 	 * */
 	public static void signUp(User user) {
@@ -89,5 +93,15 @@ public class UserController {
 			ViewUtil.errorMessage(e.getMessage());
 		}
 	}
+
+    public static void getMyReview(User user) {
+        try {
+            User userInfo = userService.getMyReview(user);
+            OutputView.printUserReviews(userInfo);
+        } catch (Exception e) {
+            ViewUtil.errorMessage(e.getMessage());
+        }
+    }
+
 }
 

@@ -24,9 +24,12 @@ public class SearchMovieView {
                 MovieController.movieSelectByMovieTitle(movieName);
                 break;
             case 2:
-
+            	String actorName = searchActorName();
+                UserController.updatedUserInfo(user);
+                MovieController.movieSelectByActor(actorName);
                 break;
             case 3:
+
                 break;
 
         }
@@ -36,7 +39,12 @@ public class SearchMovieView {
         ViewUtil.printMessage("=== 영화이름을 검색하세요 (정확한 영화이름으로 검색하세요!!) ===");
         return ViewUtil.input("영화이름 > ");
     }
-
+    
+    private static String searchActorName() {
+        ViewUtil.printMessage("=== 배우이름을 검색하세요 ===");
+        return ViewUtil.input("배우이름 > ");
+    }
+    
     public static void movieResult(User user, Movie movie) throws Exception {
         if (movie.getReviewList() == null || movie.getReviewList().size() == 0) {
             ViewUtil.printMessage("작성된 리뷰가 없습니다.");
@@ -51,8 +59,6 @@ public class SearchMovieView {
             case 1:
                 User updatedUserInfo = UserController.updatedUserInfo(user);
                 for (Review userReview : updatedUserInfo.getReviews()) {
-                    System.out.println(userReview.getMovie_id());
-                    System.out.println(movie.getMovie_pk());
                     if (userReview.getMovie_id() == movie.getMovie_pk()) {
                         ViewUtil.printMessage("이미 작성하신 리뷰가 존재합니다!!!!");
                         return;
@@ -62,8 +68,10 @@ public class SearchMovieView {
                 ReviewController.createReview(newReview);
                 break;
             case 2:
-                Review updateReview = updateReview(user, movie);
+                User updatedUserInfo2 = UserController.updatedUserInfo(user);
+                Review updateReview = updateReview(updatedUserInfo2, movie);
                 if (updateReview == null) {
+                    ViewUtil.printMessage("작성하신 리뷰가 없습니다.");
                     break;
                 }
                 ReviewController.updateReview(updateReview);
@@ -84,34 +92,19 @@ public class SearchMovieView {
     private static Review updateReview(User user, Movie movie) {
         int review_star = 0;
         String review_contents = null;
+        Review review = null;
 
         for (Review userReview : user.getReviews()) {
             if (userReview.getMovie_id() == movie.getMovie_pk()) {
                 OutputView.printUserReview(user, movie);
                 review_star = Integer.parseInt(ViewUtil.input("평점 > "));
                 review_contents = ViewUtil.input("리뷰 > ");
-                break;
-            } else {
-                ViewUtil.errorMessage("작성하신 리뷰가 없습니다.");
-                break;
+                userReview.setReview_stars(review_star);
+                userReview.setReview_content(review_contents);
+                review = userReview;
             }
         }
-
-//                Review updateReview = user.getReviews()
-//                        .stream()
-//                        .filter(r -> r.getMovie().getMov_title().equals(movie.getMov_title()))
-//                        .findFirst().get();
-
-        List<Review> reviews = user.getReviews();
-        for (Review review : reviews) {
-            if (review.getMovie_id() == movie.getMovie_pk()) {
-                review.setReview_stars(review_star);
-                review.setReview_content(review_contents);
-//                    updateReview = review;
-                return review;
-            }
-        }
-        return null;
+        return review;
     }
 
 
@@ -138,6 +131,14 @@ public class SearchMovieView {
         return review_star < 0 || review_star > 5;
     }
 
+
+    public static void showTopFive() {
+        MovieController.movieTopFive();
+    }
+
+    public static void showBestMyGenreMovie(User user) {
+        MovieController.showBestMyGenreMovie(user);
+    }
 }
 
 
