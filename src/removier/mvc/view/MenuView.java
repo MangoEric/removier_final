@@ -104,8 +104,10 @@ public class MenuView {
         while (true) {
             ViewUtil.newLine();
             ViewUtil.printMessage(ViewConst.adminBanner);
-            ViewUtil.printMessage("-----------------------------관리자 " + admin.getLogingId() + " 님 로그인 중 -------------------------------");
-            ViewUtil.printMessage(" 1. 회원정보 조회 |  2. 공지사항 작성  |  3. 공지사항 수정  | 4. 공지사항 삭제  |  5. Logout ");
+            ViewUtil.printMessageNo(ViewConst.printAdminMenu1);
+            ViewUtil.printMessageNo("┃　　　　　　                                 관리자 " + admin.getLogingId() + " 님 로그인 중                                            ┃ ");
+            ViewUtil.printMessageNo(ViewConst.getPrintAdminMenu2);
+
             int menu = Integer.parseInt(ViewUtil.input("번호를 입력하세요 > "));
             switch (menu) {
                 case 1:
@@ -121,6 +123,9 @@ public class MenuView {
                     inputDeleteNotice();
                     break;
                 case 5:
+                    NoticeController.noticeSelectByAll();
+                    break;
+                case 9:
                     return;
             }
         }
