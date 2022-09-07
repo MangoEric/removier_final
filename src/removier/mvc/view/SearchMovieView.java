@@ -65,7 +65,7 @@ public class SearchMovieView {
             OutputView.printMovieReview(movie.getReviewList());
         }
 
-        ViewUtil.printMessage("=== 1. 리뷰 작성  2. 리뷰 수정하기  3. 리뷰 삭제하기  4. 즐겨찾기  5. 메인으로 ===");
+        ViewUtil.printMessage("=== 1. 리뷰 작성  2. 리뷰 수정하기  3. 리뷰 삭제하기  4. 즐겨찾기 추가  5. 즐겨찾기 취소  9. 메인으로 ===");
 
         int input = Integer.parseInt(ViewUtil.input("선택 > "));
         switch (input) {
@@ -93,8 +93,13 @@ public class SearchMovieView {
                 deleteReview(user, movie);
                 break;
             case 4:
+        		UserController.addBookmark(user, movie);
                 break;
-
+            case 5:
+        		UserController.deleteBookmark(user, movie);
+                break;
+            case 9:
+            	return;
         }
     }
 

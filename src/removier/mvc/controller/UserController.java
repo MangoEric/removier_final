@@ -5,6 +5,7 @@ import java.util.List;
 
 import removier.mvc.dao.UserDAO;
 import removier.mvc.dto.Bookmark;
+import removier.mvc.dto.Movie;
 import removier.mvc.dto.User;
 import removier.mvc.service.MovieService;
 import removier.mvc.service.UserService;
@@ -15,11 +16,8 @@ import removier.mvc.view.SuccessView;
 import removier.mvc.view.FailView;
 
 public class UserController {
-
     private static UserService userService = new UserService();
     private static User loginUser;
-
-
 
 	public static User getLoginUser() {
 		return loginUser;
@@ -35,7 +33,6 @@ public class UserController {
 		} catch (Exception e) {
 			ViewUtil.errorMessage(e.getMessage());
 		}   
-
     }
 
     /**
@@ -82,6 +79,15 @@ public class UserController {
 		return updatedUserInfo;
 	}
 	
+    public static void getMyReview(User user) {
+        try {
+            User userInfo = userService.getMyReview(user);
+            OutputView.printUserReviews(userInfo);
+        } catch (Exception e) {
+            ViewUtil.errorMessage(e.getMessage());
+        }
+    }
+    
 	/**
 	 * 즐겨찾기 보기
 	 * */
@@ -93,15 +99,29 @@ public class UserController {
 			ViewUtil.errorMessage(e.getMessage());
 		}
 	}
+	
+	/**
+	 * 즐겨찾기 추가
+	 * */
+	public static void addBookmark(User loginUser, Movie movie) {
+		try {
+			userService.addBookmark(loginUser, movie);
+			SuccessView.printMessage("즐겨찾기에 추가됐습니다.");
+		} catch(Exception e) {
+			ViewUtil.errorMessage(e.getMessage());
+		}
+	}
 
-    public static void getMyReview(User user) {
-        try {
-            User userInfo = userService.getMyReview(user);
-            OutputView.printUserReviews(userInfo);
-        } catch (Exception e) {
-            ViewUtil.errorMessage(e.getMessage());
-        }
-    }
-
+	/**
+	 * 즐겨찾기 취소
+	 * */
+	public static void deleteBookmark(User user, Movie movie) {
+		try {
+			userService.deleteBookmark(user, movie);
+			SuccessView.printMessage("즐겨찾기 취소됐습니다.");
+		} catch(Exception e) {
+			ViewUtil.errorMessage(e.getMessage());
+		}
+	}
 }
 

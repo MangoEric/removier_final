@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import removier.mvc.dto.Bookmark;
+import removier.mvc.dto.Movie;
 import removier.mvc.dto.User;
 
 public interface UserDAO {
@@ -17,7 +18,6 @@ public interface UserDAO {
 	 * 회원 가입
 	 * @param: user는 회원 가입 시 받은 모든 정보를 가지고 있다.
 	 * */
-	//User signUp(User user) throws SQLException;
 	int signUp(User user) throws SQLException;
 	
 	/**
@@ -31,14 +31,20 @@ public interface UserDAO {
 	 * */
 	int logout(User loginUser) throws SQLException;
 
+	User getMyReview(User user) throws Exception;
 	
 	/**
 	 * 즐겨찾기 보기
 	 * */
 	List<Bookmark> selectBookmarkByUser(User loginUser) throws SQLException;
+	
+	/**
+	 * 즐겨찾기 추가
+	 * */
+	int addBookmark(User loginUser, Movie movie) throws SQLException;
 
-
-	User getMyReview(User user) throws Exception;
-
-
+	/**
+	 * 즐겨찾기 취소
+	 * */
+	int deleteBookmark(User user, Movie movie) throws SQLException;
 }

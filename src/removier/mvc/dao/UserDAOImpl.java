@@ -188,4 +188,43 @@ public class UserDAOImpl implements UserDAO {
         return userInfo;
     }
 
+	@Override
+	public int addBookmark(User loginUser, Movie movie) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		int result = 0;
+		
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement("insert into bookmark values(bookmark_id_seq.nextval, ?, ?, ?)");
+			ps.setString(1, movie.getMov_title());
+			ps.setInt(2, movie.getMovie_pk());
+			ps.setInt(3, loginUser.getMember_pk());
+			
+			result = ps.executeUpdate();
+		} finally {
+			DBUtil.close(con, ps, null);
+		}
+		return result;
+	}
+
+	@Override
+	public int deleteBookmark(User user, Movie movie) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		int result = 0;
+		
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement("DELETE FROM bookmark WHERE MOVIE_ID =? AND LOGIN_ID =?");
+			ps.setInt(1, movie.getMovie_pk());
+			ps.setInt(2, user.getMember_pk());
+			
+			result = ps.executeUpdate();
+		} finally {
+			DBUtil.close(con, ps, null);
+		}
+		return result;
+	}
+
 }

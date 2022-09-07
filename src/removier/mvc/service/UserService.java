@@ -7,6 +7,7 @@ import java.util.List;
 import removier.mvc.dao.UserDAO;
 import removier.mvc.dao.UserDAOImpl;
 import removier.mvc.dto.Bookmark;
+import removier.mvc.dto.Movie;
 import removier.mvc.dto.User;
 
 public class UserService {
@@ -40,7 +41,6 @@ public class UserService {
     	if(userDao.logout(loginUser) != 0) {
     		throw new SQLException("로그아웃에 실패했습니다.");
     	}
-    	
     	return 0;
 	}
 
@@ -48,15 +48,6 @@ public class UserService {
 		if(userDao.updateUserInfo(loginUser) == 0) {
 			throw new SQLException("회원 정보 수정에 실패했습니다.");
 		}
-	}
-
-	
-	public List<Bookmark> selectBookmarkByUser(User loginUser) throws Exception {
-		List<Bookmark> bookmarks = userDao.selectBookmarkByUser(loginUser);
-		if (bookmarks.size() == 0 || bookmarks.isEmpty()) {
-			throw new Exception("즐겨찾기에 추가한 영화가 없습니다.");
-		}
-		return bookmarks;
 	}
 
 	public User getMyReview(User user) throws Exception {
@@ -67,5 +58,26 @@ public class UserService {
 		return userInfo;
 
 	}
+	
+	public List<Bookmark> selectBookmarkByUser(User loginUser) throws Exception {
+		List<Bookmark> bookmarks = userDao.selectBookmarkByUser(loginUser);
+		if (bookmarks.size() == 0 || bookmarks.isEmpty()) {
+			throw new Exception("즐겨찾기에 추가한 영화가 없습니다.");
+		}
+		return bookmarks;
+	}
+
+	public void addBookmark(User loginUser, Movie movie) throws Exception {
+		if(userDao.addBookmark(loginUser, movie) == 0) {
+			throw new Exception("즐겨찾기 추가에 실패했습니다.");
+		}
+	}
+
+	public void deleteBookmark(User user, Movie movie) throws Exception {
+		if(userDao.deleteBookmark(user, movie) == 0) {
+			throw new Exception("즐겨찾기 취소에 실패했습니다."); 
+		}
+		
+	}	
 }
 
