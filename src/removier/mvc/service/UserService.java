@@ -2,9 +2,11 @@ package removier.mvc.service;
 
 
 import java.sql.SQLException;
+import java.util.List;
 
 import removier.mvc.dao.UserDAO;
 import removier.mvc.dao.UserDAOImpl;
+import removier.mvc.dto.Bookmark;
 import removier.mvc.dto.User;
 
 public class UserService {
@@ -46,6 +48,24 @@ public class UserService {
 		if(userDao.updateUserInfo(loginUser) == 0) {
 			throw new SQLException("회원 정보 수정에 실패했습니다.");
 		}
+	}
+
+	
+	public List<Bookmark> selectBookmarkByUser(User loginUser) throws Exception {
+		List<Bookmark> bookmarks = userDao.selectBookmarkByUser(loginUser);
+		if (bookmarks.size() == 0 || bookmarks.isEmpty()) {
+			throw new Exception("즐겨찾기에 추가한 영화가 없습니다.");
+		}
+		return bookmarks;
+	}
+
+	public User getMyReview(User user) throws Exception {
+		User userInfo = userDao.getMyReview(user);
+		if (userInfo.getReviews().size() == 0) {
+			throw new Exception("작성하신 리뷰가 없습니다.");
+		}
+		return userInfo;
+
 	}
 }
 
