@@ -27,12 +27,23 @@ public class SearchMovieView {
 
                 break;
             case 3:
+            	String movieGenre = searchMovieGenre();
+           
+            	MovieController.movieSelectByGenre(movieGenre);
+            	
                 break;
 
         }
     }
 
-    private static String searchMovieTitle() {
+    private static String searchMovieGenre() {
+    	 ViewUtil.printMessage("================ 영화장르를 검색하세요 ================");
+    	 System.out.println();
+         return ViewUtil.input("영화장르 ▶ ");  
+         
+	}
+
+	private static String searchMovieTitle() {
         ViewUtil.printMessage("=== 영화이름을 검색하세요 (정확한 영화이름으로 검색하세요!!) ===");
         return ViewUtil.input("영화이름 > ");
     }

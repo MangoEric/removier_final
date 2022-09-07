@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 public class MovieDAOImpl implements MovieDAO{
     @Override
     public List<Movie> movieTopFive() throws SQLException {
@@ -79,9 +81,34 @@ public class MovieDAOImpl implements MovieDAO{
         return null;
     }
 
+    /*
+     * 영화장르검색
+     * */
     @Override
     public List<Movie> movieSelectByGenre(String mov_genre) throws SQLException {
-        return null;
+    	 Connection con = null;
+         PreparedStatement ps = null;
+         ResultSet rs = null;
+         List<Movie> movies = new ArrayList<>();
+         String sql = "select * from movie where genre = ?";
+
+         try {
+             con = DBUtil.getConnection();
+             ps = con.prepareStatement(sql);
+             
+             ps.setString(1, mov_genre);
+             rs = ps.executeQuery();
+
+             while(rs.next()) {
+            	Movie movie = new Movie(rs.getInt(1), rs.getString(2), rs.getString(3), 
+            			 rs.getString(4), rs.getString(5), rs.getString(6));
+            	 movies.add(movie);
+ 			}
+         }finally {
+             DBUtil.close(con, ps, rs);
+         }
+
+         return movies;
     }
 
 }

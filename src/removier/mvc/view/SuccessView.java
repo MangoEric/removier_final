@@ -9,9 +9,9 @@ import removier.mvc.dto.Notice;
 public class SuccessView {
 
 	public static void selectPrint(List<Notice> list) {
-		System.out.println("┏━━━━━━━━━━━━━━━━┓");
+		System.out.println("┏━━━━━━━━━━━━━━━━━┓");
 		System.out.println("         ▒ 공지사항 (" + list.size() + ")");
-		System.out.println("┗━━━━━━━━━━━━━━━━┛");
+		System.out.println("┗━━━━━━━━━━━━━━━━━┛");
 		for (Notice notice : list) {
 			System.out.println(notice);
 		}

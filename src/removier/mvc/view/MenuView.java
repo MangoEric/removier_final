@@ -27,7 +27,7 @@ public class MenuView {
         while (true) {
 
             MenuView.printMenu();
-            int menu = Integer.parseInt(ViewUtil.input("번호를 입력하세요 > ")) ;
+            int menu = Integer.parseInt(ViewUtil.input("번호를 입력하세요 ▷ ")) ;
             switch(menu) {
                 case 1 :
                     MenuView.register(); // 가입
@@ -52,21 +52,24 @@ public class MenuView {
 
         System.out.println(ViewConst.banner);
 
-        ViewUtil.printMessage("1. 가입   |   2. 로그인   |  9. 종료");
+        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━┓");
+        ViewUtil.printMessage("     1. 가입   |   2. 로그인   |  9. 종료");
+        System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━┛");
     }
 	
 	/**
 	 * 가입
 	 * */
 	private static void register() {
-		String registerId = ViewUtil.input("아이디 > ");
-        String registerPw = ViewUtil.input("비밀번호 > ");
-        String registerName = ViewUtil.input("이름 > ");
-        String registerPhone = ViewUtil.input("휴대폰 > ");
-        String registerFG = ViewUtil.input("=== 1. 멜로 2. 코미디 3. 로맨틱 코미디 4. 액션 =======\r\n"
-        		+ "=== 5. 스릴러 6. 미스터리 7. 공포 8. 공상과학 9 판타지 ===\r\n"
-        		+ "선호 장르 > ");
-        String registerFA = ViewUtil.input("최애 배우 > ");
+		String registerId = ViewUtil.input("아이디 ▷ ");
+        String registerPw = ViewUtil.input("비밀번호 ▷ ");
+        String registerName = ViewUtil.input("이름 ▷ ");
+        String registerPhone = ViewUtil.input("휴대폰 ▷ ");
+        String registerFG = ViewUtil.input("\n=====   1. 멜로 2. 코미디 3. 로맨틱 코미디 4. 액션   =====\r\n"
+        		+ 						   "=== 5. 스릴러 6. 미스터리 7. 공포 8. 공상과학 9 판타지 ===\r\n\n"
+        		+ "선호 장르 ▷ ");
+
+        String registerFA = ViewUtil.input("최애 배우 ▷ ");
         
         User user = new User(0, registerName, registerId, registerPw, 1, registerPhone, registerFG, registerFA);
 		
@@ -79,8 +82,8 @@ public class MenuView {
     public static User login() {
 
 
-        String logingId = ViewUtil.input("아이디 > ");
-        String password = ViewUtil.input("비밀번호 > ");
+        String logingId = ViewUtil.input("아이디 ▷ ");
+        String password = ViewUtil.input("비밀번호 ▷ ");
         
         User user = new User(logingId, password);
         
@@ -94,8 +97,8 @@ public class MenuView {
      * */
     public static void adminLogin(){
         System.out.println("==========[관리자 로그인]==========");
-        String logingId = ViewUtil.input("관리자 아이디 > ");
-        String password = ViewUtil.input("관리자 비밀번호 > ");
+        String logingId = ViewUtil.input("관리자 아이디 ▷ ");
+        String password = ViewUtil.input("관리자 비밀번호 ▷ ");
 
 
         Admin admin = new Admin(logingId,password);
@@ -108,9 +111,13 @@ public class MenuView {
 		while (true) {
 			System.out.println();
 			ViewUtil.printMessage(ViewConst.adminBanner);
-			System.out.println("-----------------------------관리자 " + admin.getLogingId() + " 님 로그인 중 -------------------------------");
-			System.out.println(" 1. 회원정보 조회 |  2. 공지사항 작성  |  3. 공지사항 수정  | 4. 공지사항 삭제  |  5. Logout ");
-			int menu = Integer.parseInt(ViewUtil.input("번호를 입력하세요 > "));
+			System.out.println(" 관리자 ◀" + admin.getLogingId() + "▶님 로그인 중  ");
+			System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+			System.out.println("┃　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　				                  ");
+			System.out.println("┃     1. 회원정보 조회 |  2. 공지사항 작성  |  3. 공지사항 수정  | 4. 공지사항 삭제  |  5. Logout	 ┃");
+			System.out.println("┃　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　				                  ");
+			System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+			int menu = Integer.parseInt(ViewUtil.input("번호를 입력하세요 ▷ "));
 			switch (menu) {
 				case 1:
 					AdminController.userSelectAll();
@@ -141,19 +148,19 @@ public class MenuView {
     				+ "[나의 선호 영화 장르] " + loginUser.getFavourite_genre() + "\n"
     				+ "[연락처] " + loginUser.getPhone() + "\n\n\n"
     				+ "======= 1. 회원정보 수정 2. 내가 작성한 리뷰(7) 3.즐겨찾기 영화 4. 메인으로 ======\n"
-    				+ "번호를 입력하세요 > "
+    				+ "번호를 입력하세요 ▷ "
     			)		
     		); 
     	
     		switch(menu) {
 				case 1 :
-			        String updatePw = ViewUtil.input("비밀번호 > ");
-			        String updateName = ViewUtil.input("이름 > ");
-					String updateFA = ViewUtil.input("최애 배우 > ");
+			        String updatePw = ViewUtil.input("비밀번호 ▷ ");
+			        String updateName = ViewUtil.input("이름 ▷ ");
+					String updateFA = ViewUtil.input("최애 배우 ▷ ");
 					String updateFG = ViewUtil.input("=== 1. 멜로 2. 코미디 3. 로맨틱 코미디 4. 액션 =======\r\n"
 			        		+ "=== 5. 스릴러 6. 미스터리 7. 공포 8. 공상과학 9 판타지 ===\r\n"
-			        		+ "선호 장르 > ");
-					String updatePhone = ViewUtil.input("연락처 > ");	
+			        		+ "선호 장르 ▷ ");
+					String updatePhone = ViewUtil.input("연락처 ▷ ");	
 					
 					loginUser = new User(loginUser.getMember_pk(), updateName, loginUser.getLogingId(), updatePw, 1, updatePhone, updateFG, updateFA);
 					
@@ -185,11 +192,11 @@ public class MenuView {
 
 			System.out.println();
 			System.out.println(" ▣ " + user.getLogingId() + " 로그인 중 ");
-			System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-			System.out.println("┃　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　				           ┃");
-			System.out.println("┃     1.최신영화 (Top5)     2.영화검색     3.공지사항     4. MyPage     5.Logout	   ┃");
-			System.out.println("┃　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　				           ┃");
-			System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+			System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+			System.out.println("┃　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　				                  ");
+			System.out.println("┃     1.최신영화 (Top5)     2.영화검색     3.공지사항     4. MyPage     5.Logout	                   ┃");
+			System.out.println("┃　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　				                  ");
+			System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 			System.out.println();
 			int menu = Integer.parseInt(ViewUtil.input("번호를 입력하세요 ▷ "));
 			System.out.println();

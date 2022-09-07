@@ -1,11 +1,13 @@
 package removier.mvc.service;
 
+
 import removier.mvc.dao.MovieDAO;
 import removier.mvc.dao.MovieDAOImpl;
 import removier.mvc.dto.Movie;
 import removier.mvc.dto.User;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class MovieService {
     private MovieDAO movieDAO = new MovieDAOImpl();
@@ -22,4 +24,17 @@ public class MovieService {
         }
 //        return Movie.getFixture();
     }
+    /*
+     * 영화 장르 검색
+     * */
+	public List<Movie> searchMovieGenre(String movieGenre) throws Exception {
+		 List<Movie> movieList = movieDAO.movieSelectByGenre(movieGenre);
+		
+	        if (movieList.size() == 0) {
+	            throw new Exception("해당 영화 장르가 존재하지 않습니다.");
+	        } else {
+	     
+	            return movieList;
+	        }
+	}
 }

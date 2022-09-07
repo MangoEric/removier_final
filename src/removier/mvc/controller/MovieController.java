@@ -1,8 +1,11 @@
 package removier.mvc.controller;
 
+import java.util.List;
+
 import removier.mvc.dto.Movie;
 import removier.mvc.service.MovieService;
 import removier.mvc.util.ViewUtil;
+import removier.mvc.view.EndView;
 import removier.mvc.view.SearchMovieView;
 
 public class MovieController {
@@ -36,7 +39,14 @@ public class MovieController {
     /**
      * 영화 장르로 검색하기
      */
-    public static void movieSelectByGenre() {
+    public static void movieSelectByGenre(String movieGenre) {
+    	 try {
+    		 List<Movie> movie = movieService.searchMovieGenre(movieGenre);
+             EndView.printMovieGenre(movie);
+             
+         } catch (Exception e) {
+             ViewUtil.printMessage(e.getMessage());
+         }
     }
 
     /**
