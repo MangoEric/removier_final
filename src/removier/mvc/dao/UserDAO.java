@@ -1,7 +1,9 @@
 package removier.mvc.dao;
 
 import java.sql.SQLException;
+import java.util.List;
 
+import removier.mvc.dto.Bookmark;
 import removier.mvc.dto.User;
 
 public interface UserDAO {
@@ -28,4 +30,9 @@ public interface UserDAO {
 	 * 로그 아웃
 	 * */
 	int logout(User loginUser) throws SQLException;
+	
+	/**
+	 * 즐겨찾기 보기
+	 * */
+	List<Bookmark> selectBookmarkByUser(User loginUser) throws SQLException;
 }

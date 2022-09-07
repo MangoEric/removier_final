@@ -1,8 +1,10 @@
 package removier.mvc.controller;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import removier.mvc.dao.UserDAO;
+import removier.mvc.dto.Bookmark;
 import removier.mvc.dto.User;
 import removier.mvc.service.MovieService;
 import removier.mvc.service.UserService;
@@ -29,7 +31,7 @@ public class UserController {
         	loginUser = userService.login(user);
 			MenuView.printUserMenu(loginUser);
 		} catch (Exception e) {
-			FailView.errorMessage(e.getMessage());
+			ViewUtil.errorMessage(e.getMessage());
 		}   
     }
     
@@ -41,7 +43,7 @@ public class UserController {
 			userService.signUp(user);
 			SuccessView.printMessage("Welcome to Removier");
 		} catch(SQLException e) {
-			FailView.errorMessage(e.getMessage());
+			ViewUtil.errorMessage(e.getMessage());
 		}
 	}
 
@@ -50,7 +52,7 @@ public class UserController {
 			userService.updateUserInfo(loginUser);
 			SuccessView.printMessage("=== 회원정보가 수정되었습니다. ===");
 		} catch(SQLException e) {
-			FailView.errorMessage(e.getMessage());
+			ViewUtil.errorMessage(e.getMessage());
 		}
 	}
 
@@ -62,7 +64,7 @@ public class UserController {
 			userService.logout(loginUser);
 			SuccessView.printMessage("로그아웃 되었습니다.");
 		} catch (SQLException e) {
-			e.printStackTrace();
+			ViewUtil.errorMessage(e.getMessage());
 		}   
 	}
 
@@ -70,11 +72,22 @@ public class UserController {
 		User updatedUserInfo = null;
 		try {
 			updatedUserInfo = userService.login(requestLoginUser);
-
 		} catch (Exception e) {
 			ViewUtil.errorMessage(e.getMessage());
 		}
 		return updatedUserInfo;
+	}
+	
+	/**
+	 * 즐겨찾기 보기
+	 * */
+	public static void selectBookmarkByUser(User loginUser) {
+		try {
+			List<Bookmark> bookmarks = userService.selectBookmarkByUser(loginUser);
+			SuccessView.printBookmarkByUser(bookmarks);
+		} catch(Exception e) {
+			ViewUtil.errorMessage(e.getMessage());
+		}
 	}
 }
 

@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import removier.mvc.dto.Bookmark;
+import removier.mvc.dto.Movie;
 import removier.mvc.dto.Review;
 import removier.mvc.dto.User;
 import removier.mvc.util.DBUtil;
@@ -126,4 +128,29 @@ public class UserDAOImpl implements UserDAO {
 	public int logout(User loginUser) throws SQLException {
 		return 0;
 	}
+
+	@Override
+	public List<Bookmark> selectBookmarkByUser(User loginUser) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<Bookmark> bookmarks = new ArrayList<>();
+		
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement("select * from bookmark where login_id = ?");
+			ps.setInt(1, loginUser.getMember_pk());
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Bookmark bm = new Bookmark(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4));	
+				bookmarks.add(bm);
+			}
+			
+		} finally {
+			DBUtil.close(con, ps, rs);
+		}
+		
+		return bookmarks;
+	}	
 }

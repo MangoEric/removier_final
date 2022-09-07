@@ -164,6 +164,7 @@ public class MenuView {
 					break;
 					
 				case 3 :
+					UserController.selectBookmarkByUser(loginUser);
 					break;
 					
 				case 4 :
