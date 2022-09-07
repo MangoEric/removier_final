@@ -13,27 +13,27 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MovieDAOImpl implements MovieDAO{
+public class MovieDAOImpl implements MovieDAO {
     @Override
     public List<Movie> movieTopFive() throws SQLException {
 
-        Connection con=null;
-        PreparedStatement ps=null;
-        ResultSet rs=null;
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
 
         List<Movie> list = new ArrayList<>();
         try {
             con = DBUtil.getConnection();
-            ps= con.prepareStatement("select * from movie where id<=5");
+            ps = con.prepareStatement("select * from movie where id<=5");
             rs = ps.executeQuery();
 
 
-            while(rs.next()) {
+            while (rs.next()) {
                 Movie movie = new Movie(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
                         rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10));
                 list.add(movie);
             }
-        }finally {
+        } finally {
             DBUtil.close(con, ps, rs);
         }
         return list;
@@ -70,7 +70,7 @@ public class MovieDAOImpl implements MovieDAO{
                 List<Review> reviews = getReviews(con, movie.getMovie_pk());
                 movie.setReviewList(reviews);
             }
-        }finally {
+        } finally {
             DBUtil.close(con, ps, rs);
         }
 
@@ -92,7 +92,7 @@ public class MovieDAOImpl implements MovieDAO{
                 Review review = new Review(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getInt(6));
                 reviews.add(review);
             }
-        }finally {
+        } finally {
             DBUtil.close(null, ps, rs);
         }
         return reviews;
@@ -100,63 +100,66 @@ public class MovieDAOImpl implements MovieDAO{
 
     @Override
     public List<Movie> movieSelectByActor(String actor_name) throws SQLException {
-    	Connection con = null;
+        Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        List<Movie> actor = new ArrayList<>();
-        String sql = "select * from actor where name = ?";
+        List<Movie> movies = new ArrayList<>();
+        String sql = "SELECT * FROM movie WHERE actor1=? or actor2=? or actor3=? or actor4=?";
 
         try {
             con = DBUtil.getConnection();
             ps = con.prepareStatement(sql);
             ps.setString(1, actor_name);
+            ps.setString(2, actor_name);
+            ps.setString(3, actor_name);
+            ps.setString(4, actor_name);
+
             rs = ps.executeQuery();
 
             while (rs.next()) {
-            	
-                int actor_pk = rs.getInt(1);
-                String actor_name1 = rs.getString(2);
-                String movie = rs.getString(3);
-               	
-            	
+                Movie movie = new Movie(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
+                        rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10));
+                movies.add(movie);
+
+
             }
-        }finally {
+        } finally {
             DBUtil.close(con, ps, rs);
         }
 
-        return actor;
+        return movies;
     }
 
 
     @Override
     public List<Movie> movieSelectByGenre(String mov_genre) throws SQLException {
-    	 Connection con = null;
-         PreparedStatement ps = null;
-         ResultSet rs = null;
-         List<Movie> movies = new ArrayList<>();
-         String sql = "select * from movie where genre = ?";
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<Movie> movies = new ArrayList<>();
+        String sql = "select * from movie where genre = ?";
 
-         try {
-             con = DBUtil.getConnection();
-             ps = con.prepareStatement(sql);
-             
-             ps.setString(1, mov_genre);
-             rs = ps.executeQuery();
+        try {
+            con = DBUtil.getConnection();
+            ps = con.prepareStatement(sql);
 
-             while(rs.next()) {
-            	Movie movie = new Movie(rs.getInt(1), rs.getString(2), rs.getString(3), 
-            			 rs.getString(4), rs.getString(5), rs.getString(6));
-            	 movies.add(movie);
- 			}
-         }finally {
-             DBUtil.close(con, ps, rs);
-         }
+            ps.setString(1, mov_genre);
+            rs = ps.executeQuery();
 
-         return movies;
+            while (rs.next()) {
+                Movie movie = new Movie(rs.getInt(1), rs.getString(2), rs.getString(3),
+                        rs.getString(4), rs.getString(5), rs.getString(6));
+                movies.add(movie);
+            }
+        } finally {
+            DBUtil.close(con, ps, rs);
+        }
+
+        return movies;
     }
 
     @Override
-    public Movie showBestMyGenreMovie(String favourite_genre) throws SQLException{
+    public Movie showBestMyGenreMovie(String favourite_genre) throws SQLException {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -186,7 +189,7 @@ public class MovieDAOImpl implements MovieDAO{
                 List<Review> reviews = getReviews(con, movie.getMovie_pk());
                 movie.setReviewList(reviews);
             }
-        }finally {
+        } finally {
             DBUtil.close(con, ps, rs);
         }
 

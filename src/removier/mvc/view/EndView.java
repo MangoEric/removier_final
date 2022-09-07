@@ -38,6 +38,15 @@ public class EndView {
     	}
     	
     }
+    public static void printMovieOfActor(List<Movie> movies) {
+    	for (Movie movie : movies) {
+    		ViewUtil.printMessage(" ▥영화명   : " + movie.getMov_title());
+    		ViewUtil.printMessage(" ▥영화감독 : " + movie.getMov_director());
+    		System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+
+    	}
+
+    }
 
 
     public static void printMovieTopFive(List<Movie> list){

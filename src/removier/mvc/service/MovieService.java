@@ -30,11 +30,11 @@ public class MovieService {
          * @param actorName
          */
         public List<Movie> searchActorName(String actorName) throws Exception {
-        	List<Movie> actor = movieDAO.movieSelectByActor(actorName);
-            if (actor == null) {
-                throw new Exception("해당 배우가 존재하지 않습니다.");
+        	List<Movie> movies = movieDAO.movieSelectByActor(actorName);
+            if (movies.size() == 0) {
+                throw new Exception("해당 배우가 출현한 영화가 존재하지 않습니다.");
             } else {
-                return actor;
+                return movies;
             }
     }
 

@@ -47,7 +47,8 @@ public class MovieController {
      */
     public static void movieSelectByActor(String actorName) {
     	try {
-            List<Movie> actor = movieService.searchActorName(actorName);
+            List<Movie> movies = movieService.searchActorName(actorName);
+            EndView.printMovieOfActor(movies);
             
         } catch (Exception e) {
             ViewUtil.printMessage(e.getMessage());
