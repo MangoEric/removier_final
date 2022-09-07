@@ -54,6 +54,11 @@ public class SearchMovieView {
     }
     
     public static void movieResult(User user, Movie movie) throws Exception {
+            EndView.printMovieInfo(movie);
+
+
+
+
         if (movie.getReviewList() == null || movie.getReviewList().size() == 0) {
             ViewUtil.printMessage("작성된 리뷰가 없습니다.");
         } else {

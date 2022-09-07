@@ -59,4 +59,17 @@ public class EndView {
     }
 
 
+    public static void printMovieInfo(Movie movie) {
+        ViewUtil.printMessage("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓\n" +
+                              "  ▒  영화정보 \n" +
+                              " [영화제목] : " + movie.getMov_title()+"\n"+
+                              " [장르] : "+ movie.getMov_genre()+"\n"+
+                              " [감독] : "+ movie.getMov_director()+"\n"+
+                              " [배우] : "+ movie.getActor_name1()+", "+ movie.getActor_name2()+","+ movie.getActor_name3()+", "+movie.getActor_name4()+"\n"+
+                              " [줄거리] \n"+ movie.getMov_plot()+"\n"+
+
+                              "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+
+
+    }
 }
