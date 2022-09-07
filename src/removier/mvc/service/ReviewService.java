@@ -28,7 +28,7 @@ public class ReviewService {
     public void deleteReview(User user, Movie movie) throws SQLException {
         int result = reviewDAO.reviewDelete(user, movie);
         if (result == 0) {
-            throw new SQLException("삭제에 실패하였습니다.");
+            throw new SQLException("삭제할 리뷰가 없습니다.");
         }
     }
 }

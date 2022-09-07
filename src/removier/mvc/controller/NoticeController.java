@@ -46,7 +46,6 @@ public class NoticeController {
 			System.out.printf("\n");
 			System.out.printf("\n");
 
-			return ;
 		}	
 		
 	}	

@@ -71,4 +71,13 @@ public class MovieService {
 	            return movieList;
 	        }
 	}
+
+    public Movie updatedMovieInfo(Movie movie) throws Exception{
+        Movie updatedMovieInfo = movieDAO.updatedMovieInfo(movie);
+        if (movie == null) {
+            throw new Exception("해당 영화가 존재하지 않습니다.");
+        } else {
+            return updatedMovieInfo;
+        }
+    }
 }

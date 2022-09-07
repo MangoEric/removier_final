@@ -3,8 +3,7 @@ package removier.mvc.controller;
 import removier.mvc.dto.Admin;
 import removier.mvc.dto.User;
 import removier.mvc.service.AdminService;
-import removier.mvc.service.UserService;
-import removier.mvc.view.EndView;
+import removier.mvc.view.SuccessView;
 import removier.mvc.view.MenuView;
 
 import java.util.List;
@@ -32,7 +31,7 @@ public class AdminController {
 	public static void userSelectAll(){
 		try	{
 			List<User> list = adminService.userSelectAll();
-			EndView.printUserAllList(list);
+			SuccessView.printUserAllList(list);
 		} catch (Exception e){
 
 		}

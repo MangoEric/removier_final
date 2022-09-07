@@ -134,8 +134,8 @@ public class MenuView {
 
     }
     private static void showMyPage() {
-    	User loginUser = UserController.getLoginUser();
-    	while(true) {	
+    	User loginUser = UserController.updatedUserInfo(UserController.getLoginUser());
+    	while(true) {
     		int menu = Integer.parseInt(
     			ViewUtil.input("\n===" + loginUser.getLogingId() + "님의 My Page ===\n" 
     				+ "[id] " + loginUser.getLogingId() + "\n"
@@ -143,7 +143,7 @@ public class MenuView {
     				+ "[나의 최애 배우] " + loginUser.getFavourite_actor() + "\n"
     				+ "[나의 선호 영화 장르] " + loginUser.getFavourite_genre() + "\n"
     				+ "[연락처] " + loginUser.getPhone() + "\n\n\n"
-    				+ "======= 1. 회원정보 수정 2. 내가 작성한 리뷰(7) 3.즐겨찾기 영화 4. 메인으로 ======\n"
+    				+ "======= 1. 회원정보 수정 2. 내가 작성한 리뷰(" + loginUser.getReviews().size() + ") 3.즐겨찾기 영화 4. 메인으로 ======\n"
     				+ "번호를 입력하세요 ▷ "
     			)		
     		); 
@@ -166,6 +166,7 @@ public class MenuView {
 				case 2 :
                     ViewUtil.printMessage("<내가 작성한 리뷰>");
                     UserController.getMyReview(loginUser);
+
 					break;
 					
 				case 3 :

@@ -7,11 +7,8 @@ import removier.mvc.dto.Movie;
 import removier.mvc.dto.User;
 import removier.mvc.service.MovieService;
 import removier.mvc.util.ViewUtil;
-import removier.mvc.view.EndView;
+import removier.mvc.view.SuccessView;
 import removier.mvc.view.SearchMovieView;
-
-import java.sql.PreparedStatement;
-import java.util.List;
 
 public class MovieController {
     private static MovieService movieService = new MovieService();
@@ -23,7 +20,7 @@ public class MovieController {
     public static void movieTopFive() {
         try {
             List<Movie> list = movieService.showTopFive();
-            EndView.printMovieTopFive(list);
+            SuccessView.printMovieTopFive(list);
         }catch (Exception e) {
 
         }
@@ -48,7 +45,7 @@ public class MovieController {
     public static void movieSelectByActor(String actorName) {
     	try {
             List<Movie> movies = movieService.searchActorName(actorName);
-            EndView.printMovieOfActor(movies);
+            SuccessView.printMovieOfActor(movies);
             
         } catch (Exception e) {
             ViewUtil.printMessage(e.getMessage());
@@ -61,7 +58,7 @@ public class MovieController {
     public static void movieSelectByGenre(String movieGenre) {
     	 try {
     		 List<Movie> movie = movieService.searchMovieGenre(movieGenre);
-             EndView.printMovieGenre(movie);
+             SuccessView.printMovieGenre(movie);
              
          } catch (Exception e) {
              ViewUtil.printMessage(e.getMessage());
@@ -78,10 +75,15 @@ public class MovieController {
         }
     }
 
-    /**
-     * 영화이름 검색하기
-     *
-     * @param movieName
-     */
+    public static Movie updatedMovieInfo(Movie movie) {
+        Movie updatedMovieInfo = null;
+        try {
+            updatedMovieInfo = movieService.updatedMovieInfo(movie);
+        } catch (Exception e) {
+            ViewUtil.printMessage(e.getMessage());
+        }
+        return updatedMovieInfo;
+    }
+
 
 }
