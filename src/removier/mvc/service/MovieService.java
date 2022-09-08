@@ -53,7 +53,7 @@ public class MovieService {
     public Movie showBestMyGenreMovie(User user) throws Exception {
         Movie movie = movieDAO.showBestMyGenreMovie(user.getFavourite_genre());
         if (movie == null) {
-            throw new Exception("해당 영화가 존재하지 않습니다.");
+            throw new Exception("추천 영화가 존재하지 않습니다.");
         } else {
             return movie;
         }

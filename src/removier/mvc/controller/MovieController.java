@@ -21,7 +21,7 @@ public class MovieController {
         try {
             List<Movie> list = movieService.showTopFive();
             SuccessView.printMovieTopFive(list);
-        }catch (Exception e) {
+        } catch (Exception e) {
 
         }
 
@@ -43,10 +43,10 @@ public class MovieController {
      * 영화 배우로 검색하기
      */
     public static void movieSelectByActor(String actorName) {
-    	try {
+        try {
             List<Movie> movies = movieService.searchActorName(actorName);
             SuccessView.printMovieOfActor(movies);
-            
+
         } catch (Exception e) {
             ViewUtil.printMessage(e.getMessage());
         }
@@ -56,20 +56,20 @@ public class MovieController {
      * 영화 장르로 검색하기
      */
     public static void movieSelectByGenre(String movieGenre) {
-    	 try {
-    		 List<Movie> movie = movieService.searchMovieGenre(movieGenre);
-             SuccessView.printMovieGenre(movie);
-             
-         } catch (Exception e) {
-             ViewUtil.printMessage(e.getMessage());
-         }
+        try {
+            List<Movie> movie = movieService.searchMovieGenre(movieGenre);
+            SuccessView.printMovieGenre(movie);
+
+        } catch (Exception e) {
+            ViewUtil.printMessage(e.getMessage());
+        }
     }
 
 
     public static void showBestMyGenreMovie(User user) {
         try {
             Movie movie = movieService.showBestMyGenreMovie(user);
-            SearchMovieView.movieResult(UserController.getLoginUser(), movie);
+            SuccessView.printShowMyBestGenreMovie(movie);
         } catch (Exception e) {
             ViewUtil.printMessage(e.getMessage());
         }
@@ -84,6 +84,5 @@ public class MovieController {
         }
         return updatedMovieInfo;
     }
-
-
 }
+

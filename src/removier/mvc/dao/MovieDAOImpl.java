@@ -160,31 +160,20 @@ public class MovieDAOImpl implements MovieDAO {
         PreparedStatement ps = null;
         ResultSet rs = null;
         Movie movie = null;
-        String sql = "select * from movie where  = ?";
+        String sql = "SELECT title from(SELECT rownum, id, title FROM movie WHERE GENRE ='?' ORDER BY id) WHERE rownum =1";
 
         try {
             con = DBUtil.getConnection();
             ps = con.prepareStatement(sql);
+
             ps.setString(1, favourite_genre);
             rs = ps.executeQuery();
 
-            while (rs.next()) {
-                int movie_pk = rs.getInt(1);
+                if (rs.next()) {
+                    String mov_title = rs.getString(1);
+                    movie = new Movie(mov_title);
+                }
 
-                String mov_title = rs.getString(2);
-                String mov_genre = rs.getString(3);
-                String mov_plot = rs.getString(4);
-                String mov_date = rs.getString(5);
-                String mov_director = rs.getString(6);
-                String actor_name1 = rs.getString(7);
-                String actor_name2 = rs.getString(8);
-                String actor_name3 = rs.getString(9);
-                String actor_name4 = rs.getString(10);
-
-                movie = new Movie(movie_pk, mov_title, mov_genre, mov_plot, mov_date, mov_director, actor_name1, actor_name2, actor_name3, actor_name4);
-                List<Review> reviews = getReviews(con, movie.getMovie_pk());
-                movie.setReviewList(reviews);
-            }
         } finally {
             DBUtil.close(con, ps, rs);
         }

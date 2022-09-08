@@ -2,6 +2,7 @@ package removier.mvc.view;
 
 
 
+import removier.mvc.controller.MovieController;
 import removier.mvc.controller.NoticeController;
 
 import removier.mvc.controller.AdminController;
@@ -192,6 +193,10 @@ public class MenuView {
 
     public static void printUserMenu(User user) {
         while (true) {
+
+            /*고종영 작성중*/
+            System.out.println(user.getMember_name()+"님의 취향저격 콘텐츠!");
+            MovieController.showBestMyGenreMovie(user);
 
             ViewUtil.newLine();
             ViewUtil.printMessage(" ▣ " + user.getLogingId() + " 로그인 중 ");

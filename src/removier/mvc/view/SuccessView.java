@@ -81,7 +81,8 @@ public class SuccessView {
     }
 
     /**
-     * 회원정보 전부 출력
+     * 관리자 계정 으로 회원정보 전부 출력
+     * @pram : 회원정보를 list 로 가져온다.
      * */
     public static void printUserAllList(List<User> list){
         System.out.println();
@@ -96,7 +97,10 @@ public class SuccessView {
         }
         System.out.println();
     }
-    
+    /**
+     * 영화 장르로 검색후 결과 출력
+     * @pram : 영화 를 list 로 가져온다.
+     * */
     public static void printMovieGenre(List<Movie> movies) {
     	for (Movie movie : movies) {
     		ViewUtil.printMessage(" ▥영화명   : " + movie.getMov_title());    		
@@ -106,6 +110,10 @@ public class SuccessView {
     	}
     	
     }
+    /**
+     * 영화 배우 이름으로 검색후 결과 출력
+     * @param : 영화 를 list 로 가져온다.
+     * */
     public static void printMovieOfActor(List<Movie> movies) {
     	for (Movie movie : movies) {
     		ViewUtil.printMessage(" ▥영화명   : " + movie.getMov_title());
@@ -115,8 +123,10 @@ public class SuccessView {
     	}
 
     }
-
-
+    /**
+     * 최산영화 top 5 를 출력
+     * @param : 영화 를 list 로 가져온다.
+     * */
     public static void printMovieTopFive(List<Movie> list){
 
         System.out.println("┏━━━━━오늘의 Top5 영화━━━━━┓");
@@ -126,7 +136,10 @@ public class SuccessView {
         System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━┛");
     }
 
-
+    /**
+     * 영화 정보를 보여준다.
+     * @param : 영화를 movie 객체로 로 가져온다.
+     * */
     public static void printMovieInfo(Movie movie) {
         ViewUtil.printMessage("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓\n" +
                               "  ▒  영화정보 \n" +
@@ -139,5 +152,9 @@ public class SuccessView {
                               "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 
 
+    }
+
+    public static void printShowMyBestGenreMovie(Movie movie) {
+        System.out.println(movie.getMov_title());
     }
 }

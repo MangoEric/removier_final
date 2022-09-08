@@ -35,6 +35,9 @@ public class Movie {
     public Movie() {
     }
 
+    public Movie(String mov_title) {
+        this.mov_title = mov_title;
+    }
 
     public Movie(int movie_pk, String mov_title, String mov_genre, String mov_plot, String mov_date, String mov_director, String actor_name1, String actor_name3, String actor_name4, String actor_name2, List<Review> reviewList) {
         this(movie_pk, mov_title, mov_genre, mov_plot, mov_date, mov_director, actor_name1, actor_name2, actor_name3, actor_name4);
