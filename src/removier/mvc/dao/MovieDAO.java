@@ -3,6 +3,7 @@ package removier.mvc.dao;
 import java.sql.SQLException;
 import java.util.List;
 
+import removier.mvc.dto.Actor;
 import removier.mvc.dto.Movie;
 import removier.mvc.dto.Review;
 import removier.mvc.dto.User;
@@ -18,10 +19,7 @@ public interface MovieDAO {
 	 * */
 	Movie movieSelectByMovieTitle(String mov_title) throws SQLException;
 	
-	/**
-	 * 영화 배우로 검색하기
-	 * */
-	List<Movie> movieSelectByActor(String actor_name) throws SQLException;
+
 	
 	/**
 	 * 영화 장르로 검색하기

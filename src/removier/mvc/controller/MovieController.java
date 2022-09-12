@@ -3,6 +3,7 @@ package removier.mvc.controller;
 import java.util.List;
 
 
+import removier.mvc.dto.Actor;
 import removier.mvc.dto.Movie;
 import removier.mvc.dto.User;
 import removier.mvc.service.MovieService;
@@ -44,8 +45,9 @@ public class MovieController {
      */
     public static void movieSelectByActor(String actorName) {
     	try {
-            List<Movie> movies = movieService.searchActorName(actorName);
-            SuccessView.printMovieOfActor(movies);
+            List<Actor> actors = movieService.searchActorName(actorName);
+
+            SuccessView.printMovieOfActor(actors);
             
         } catch (Exception e) {
             ViewUtil.printMessage(e.getMessage());
@@ -69,6 +71,7 @@ public class MovieController {
     public static void showBestMyGenreMovie(User user) {
         try {
             Movie movie = movieService.showBestMyGenreMovie(user);
+            // todo : 뷰 바꿔야됨
             SearchMovieView.movieResult(UserController.getLoginUser(), movie);
         } catch (Exception e) {
             ViewUtil.printMessage(e.getMessage());

@@ -1,6 +1,8 @@
 package removier.mvc.service;
 
 
+import removier.mvc.dao.ActorDAO;
+import removier.mvc.dao.ActorDAOImpl;
 import removier.mvc.dao.MovieDAO;
 import removier.mvc.dao.MovieDAOImpl;
 import removier.mvc.dto.Actor;
@@ -12,6 +14,7 @@ import java.util.List;
 
 public class MovieService {
     private MovieDAO movieDAO = new MovieDAOImpl();
+    private ActorDAO actorDAO = new ActorDAOImpl();
     /**
      * 영화이름 검색
      * @param movieTitle
@@ -29,12 +32,12 @@ public class MovieService {
          * 배우이름 검색
          * @param actorName
          */
-        public List<Movie> searchActorName(String actorName) throws Exception {
-        	List<Movie> movies = movieDAO.movieSelectByActor(actorName);
-            if (movies.size() == 0) {
+        public List<Actor> searchActorName(String actorName) throws Exception {
+        	List<Actor> actors = actorDAO.movieSelectByActor(actorName);
+            if (actors.size() == 0) {
                 throw new Exception("해당 배우가 출현한 영화가 존재하지 않습니다.");
             } else {
-                return movies;
+                return actors;
             }
     }
 

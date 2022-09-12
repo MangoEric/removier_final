@@ -13,19 +13,10 @@ public class Movie {
     private String mov_plot; //영화 줄거리
     private String mov_date; //영화 개봉일
     private String mov_director; // 영화 감독
+    private int audiacc; // 누적 관람객 수
 
 
-
-    private String actor_name1; //주연배우 이름1
-    private String actor_name2; //주연배우 이름2
-    private String actor_name3; //주연배우 이름3
-    private String actor_name4; //주연배우 이름4
-
-
-    /**
-     * 주연배우 4명을 List로 가져온다.
-     */
-//    List<Actor> actorList = new ArrayList<>();
+    private List<Actor> actors = new ArrayList<>();
 
     /**
      * 영화 리뷰를 list 로 가져온다.
@@ -35,38 +26,29 @@ public class Movie {
     public Movie() {
     }
 
+    public Movie(int movie_pk, String mov_title, String mov_genre, String mov_plot, String mov_date, String mov_director) {
+        this.movie_pk = movie_pk;
+        this.mov_title = mov_title;
+        this.mov_genre = mov_genre;
+        this.mov_plot = mov_plot;
+        this.mov_date = mov_date;
+        this.mov_director = mov_director;
+    }
 
-    public Movie(int movie_pk, String mov_title, String mov_genre, String mov_plot, String mov_date, String mov_director, String actor_name1, String actor_name3, String actor_name4, String actor_name2, List<Review> reviewList) {
-        this(movie_pk, mov_title, mov_genre, mov_plot, mov_date, mov_director, actor_name1, actor_name2, actor_name3, actor_name4);
+    public Movie(int movie_pk, String mov_title, String mov_genre, String mov_plot, String mov_date, String mov_director, int audiacc) {
+        this(movie_pk, mov_title, mov_genre, mov_plot, mov_date, mov_director);
+        this.audiacc = audiacc;
+    }
+
+    public Movie(int movie_pk, String mov_title, String mov_genre, String mov_plot, String mov_date, String mov_director, int audiacc, List<Review> reviewList) {
+        this(movie_pk, mov_title, mov_genre, mov_plot, mov_date, mov_director, audiacc);
         this.reviewList = reviewList;
     }
 
-
-    public Movie(int movie_pk, String mov_title, String mov_genre, String mov_plot, String mov_date, String mov_director, String actor_name1, String actor_name2, String actor_name3, String actor_name4) {
-        this.movie_pk = movie_pk;
-        this.mov_title = mov_title;
-        this.mov_genre = mov_genre;
-        this.mov_plot = mov_plot;
-        this.mov_date = mov_date;
-        this.mov_director = mov_director;
-        this.actor_name1 = actor_name1;
-        this.actor_name2 = actor_name2;
-        this.actor_name3 = actor_name3;
-        this.actor_name4 = actor_name4;
+    public Movie(int movie_pk, String mov_title, String mov_genre, String mov_plot, String mov_date, String mov_director, int audiacc, List<Actor> actors, List<Review> reviewList) {
+        this(movie_pk, mov_title, mov_genre, mov_plot, mov_date, mov_director, audiacc, reviewList);
+        this.actors = actors;
     }
-
-
-    public Movie(int movie_pk, String mov_title, String mov_genre, String mov_plot, String mov_date, String mov_director) {
-
-        this.movie_pk = movie_pk;
-        this.mov_title = mov_title;
-        this.mov_genre = mov_genre;
-        this.mov_plot = mov_plot;
-        this.mov_date = mov_date;
-        this.mov_director = mov_director;
-
-    }
-
 
     public int getMovie_pk() {
         return movie_pk;
@@ -116,36 +98,12 @@ public class Movie {
         this.mov_director = mov_director;
     }
 
-    public String getActor_name1() {
-        return actor_name1;
+    public int getAudiacc() {
+        return audiacc;
     }
 
-    public void setActor_name1(String actor_name1) {
-        this.actor_name1 = actor_name1;
-    }
-
-    public String getActor_name2() {
-        return actor_name2;
-    }
-
-    public void setActor_name2(String actor_name2) {
-        this.actor_name2 = actor_name2;
-    }
-
-    public String getActor_name3() {
-        return actor_name3;
-    }
-
-    public void setActor_name3(String actor_name3) {
-        this.actor_name3 = actor_name3;
-    }
-
-    public String getActor_name4() {
-        return actor_name4;
-    }
-
-    public void setActor_name4(String actor_name4) {
-        this.actor_name4 = actor_name4;
+    public void setAudiacc(int audiacc) {
+        this.audiacc = audiacc;
     }
 
     public List<Review> getReviewList() {
@@ -156,31 +114,26 @@ public class Movie {
         this.reviewList = reviewList;
     }
 
+    public List<Actor> getActors() {
+        return actors;
+    }
+
+    public void setActors(List<Actor> actors) {
+        this.actors = actors;
+    }
+
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("movie_pk=");
-        sb.append(movie_pk);
-        sb.append(", mov_title=");
-        sb.append(mov_title);
-        sb.append(", mov_genre=");
-        sb.append(mov_genre);
-        sb.append(", mov_plot=");
-        sb.append(mov_plot);
-        sb.append(", mov_date=");
-        sb.append(mov_date);
-        sb.append(", mov_director=");
-        sb.append(mov_director);
-        sb.append(", actor_name1=");
-        sb.append(actor_name1);
-        sb.append(", actor_name2=");
-        sb.append(actor_name2);
-        sb.append(", actor_name3=");
-        sb.append(actor_name3);
-        sb.append(", actor_name4=");
-        sb.append(actor_name4);
-        sb.append(", reviewList=");
-        sb.append(reviewList);
+        final StringBuilder sb = new StringBuilder("Movie{");
+        sb.append("movie_pk=").append(movie_pk);
+        sb.append(", mov_title='").append(mov_title).append('\'');
+        sb.append(", mov_genre='").append(mov_genre).append('\'');
+        sb.append(", mov_plot='").append(mov_plot).append('\'');
+        sb.append(", mov_date='").append(mov_date).append('\'');
+        sb.append(", mov_director='").append(mov_director).append('\'');
+        sb.append(", audiacc='").append(audiacc).append('\'');
+        sb.append(", reviewList=").append(reviewList);
+        sb.append('}');
         return sb.toString();
     }
 }

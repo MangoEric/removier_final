@@ -45,7 +45,7 @@ public class AdminDAOImpl implements AdminDAO{
         List<User> list = new ArrayList<>();
         try {
             con = DBUtil.getConnection();
-            ps= con.prepareStatement("select * from removier_USER");
+            ps= con.prepareStatement("select * from removier_api_user");
             rs = ps.executeQuery();
 
 

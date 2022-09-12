@@ -3,7 +3,6 @@ package removier.mvc.dao;
 import removier.mvc.dto.Actor;
 import removier.mvc.dto.Movie;
 import removier.mvc.dto.Review;
-import removier.mvc.dto.User;
 import removier.mvc.util.DBUtil;
 
 import java.sql.Connection;
@@ -24,13 +23,13 @@ public class MovieDAOImpl implements MovieDAO {
         List<Movie> list = new ArrayList<>();
         try {
             con = DBUtil.getConnection();
-            ps = con.prepareStatement("select * from movie where id<=5");
+            ps = con.prepareStatement("select * from movie_api WHERE rownum <= 5 order by audiacc DESC;");
             rs = ps.executeQuery();
 
 
             while (rs.next()) {
                 Movie movie = new Movie(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
-                        rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10));
+                        rs.getString(6), rs.getInt(7));
                 list.add(movie);
             }
         } finally {
@@ -45,7 +44,7 @@ public class MovieDAOImpl implements MovieDAO {
         PreparedStatement ps = null;
         ResultSet rs = null;
         Movie movie = null;
-        String sql = "select * from movie where title = ?";
+        String sql = "select * from movie_api where title = ?";
 
         try {
             con = DBUtil.getConnection();
@@ -61,12 +60,9 @@ public class MovieDAOImpl implements MovieDAO {
                 String mov_plot = rs.getString(4);
                 String mov_date = rs.getString(5);
                 String mov_director = rs.getString(6);
-                String actor_name1 = rs.getString(7);
-                String actor_name2 = rs.getString(8);
-                String actor_name3 = rs.getString(9);
-                String actor_name4 = rs.getString(10);
+                int audiacc = rs.getInt(7);
 
-                movie = new Movie(movie_pk, mov_title, mov_genre, mov_plot, mov_date, mov_director, actor_name1, actor_name2, actor_name3, actor_name4);
+                movie = new Movie(movie_pk, mov_title, mov_genre, mov_plot, mov_date, mov_director, audiacc);
                 List<Review> reviews = getReviews(con, movie.getMovie_pk());
                 movie.setReviewList(reviews);
             }
@@ -81,7 +77,7 @@ public class MovieDAOImpl implements MovieDAO {
         PreparedStatement ps = null;
         ResultSet rs = null;
         List<Review> reviews = new ArrayList<>();
-        String sql = "select * from review where movie_id = ?";
+        String sql = "select * from review_api where movie_id = ?";
 
         try {
             ps = con.prepareStatement(sql);
@@ -99,41 +95,12 @@ public class MovieDAOImpl implements MovieDAO {
     }
 
     @Override
-    public List<Movie> movieSelectByActor(String actor_name) throws SQLException {
-        Connection con = null;
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        List<Movie> movies = new ArrayList<>();
-        String sql = "SELECT * FROM movie WHERE actor1=? or actor2=? or actor3=? or actor4=?";
-
-        try {
-            con = DBUtil.getConnection();
-            ps = con.prepareStatement(sql);
-            ps.setString(1, actor_name);
-            ps.setString(2, actor_name);
-            ps.setString(3, actor_name);
-            ps.setString(4, actor_name);
-
-            rs = ps.executeQuery();
-
-            while (rs.next()) {
-                Movie movie = new Movie(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
-                        rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10));
-                movies.add(movie);
-            }
-        } finally {
-            DBUtil.close(con, ps, rs);
-        }
-        return movies;
-    }
-
-    @Override
     public List<Movie> movieSelectByGenre(String mov_genre) throws SQLException {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
         List<Movie> movies = new ArrayList<>();
-        String sql = "select * from movie where genre = ?";
+        String sql = "select * from movie_api where genre = ?";
 
         try {
             con = DBUtil.getConnection();
@@ -160,12 +127,12 @@ public class MovieDAOImpl implements MovieDAO {
         PreparedStatement ps = null;
         ResultSet rs = null;
         Movie movie = null;
-        String sql = "select * from movie where  = ?";
+        String sql = "select * from movie_api WHERE genre LIKE '?' AND rownum <= 5 ORDER BY audiacc desc;";
 
         try {
             con = DBUtil.getConnection();
             ps = con.prepareStatement(sql);
-            ps.setString(1, favourite_genre);
+            ps.setString(1, "%" + favourite_genre + "%");
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -176,12 +143,10 @@ public class MovieDAOImpl implements MovieDAO {
                 String mov_plot = rs.getString(4);
                 String mov_date = rs.getString(5);
                 String mov_director = rs.getString(6);
-                String actor_name1 = rs.getString(7);
-                String actor_name2 = rs.getString(8);
-                String actor_name3 = rs.getString(9);
-                String actor_name4 = rs.getString(10);
 
-                movie = new Movie(movie_pk, mov_title, mov_genre, mov_plot, mov_date, mov_director, actor_name1, actor_name2, actor_name3, actor_name4);
+                int audiacc = rs.getInt(7);
+
+                movie = new Movie(movie_pk, mov_title, mov_genre, mov_plot, mov_date, mov_director, audiacc);
                 List<Review> reviews = getReviews(con, movie.getMovie_pk());
                 movie.setReviewList(reviews);
             }
@@ -198,7 +163,7 @@ public class MovieDAOImpl implements MovieDAO {
         PreparedStatement ps = null;
         ResultSet rs = null;
         Movie updatedMovie = null;
-        String sql = "select * from movie where title = ?";
+        String sql = "select * from movie_api where title = ?";
 
         try {
             con = DBUtil.getConnection();
@@ -214,19 +179,40 @@ public class MovieDAOImpl implements MovieDAO {
                 String mov_plot = rs.getString(4);
                 String mov_date = rs.getString(5);
                 String mov_director = rs.getString(6);
-                String actor_name1 = rs.getString(7);
-                String actor_name2 = rs.getString(8);
-                String actor_name3 = rs.getString(9);
-                String actor_name4 = rs.getString(10);
 
-                updatedMovie = new Movie(movie_pk, mov_title, mov_genre, mov_plot, mov_date, mov_director, actor_name1, actor_name2, actor_name3, actor_name4);
+                int audiacc = rs.getInt(7);
+
+                updatedMovie = new Movie(movie_pk, mov_title, mov_genre, mov_plot, mov_date, mov_director, audiacc);
                 List<Review> reviews = getReviews(con, updatedMovie.getMovie_pk());
+                List<Actor> actors = getActors(con, updatedMovie.getMovie_pk());
                 updatedMovie.setReviewList(reviews);
+                updatedMovie.setActors(actors);
             }
         } finally {
             DBUtil.close(con, ps, rs);
         }
 
         return updatedMovie;
+    }
+
+    private List<Actor> getActors(Connection con, int movie_pk) throws SQLException {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<Actor> actors = new ArrayList<>();
+        String sql = "SELECT * FROM actor_api WHERE movie_id = ? AND rownum <= 5;";
+
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, movie_pk);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Actor actor = new Actor(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4));
+                actors.add(actor);
+            }
+        } finally {
+            DBUtil.close(null, ps, rs);
+        }
+        return actors;
     }
 }

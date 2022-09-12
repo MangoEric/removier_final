@@ -17,7 +17,7 @@ public class ReviewDAOImpl implements ReviewDAO {
         Connection con = null;
         PreparedStatement ps = null;
         int result = 0;
-        String sql = "insert into review values (review_id_seq.nextval, ?, ?, ?, ?, ?, ?)";
+        String sql = "insert into review_api values (review_id_seq.nextval, ?, ?, ?, ?, ?, ?)";
 
         try {
             con = DBUtil.getConnection();
@@ -43,7 +43,7 @@ public class ReviewDAOImpl implements ReviewDAO {
         Connection con = null;
         PreparedStatement ps = null;
         int result = 0;
-        String sql = "update review set review_stars = ?, review_content = ? where user_id = " + updateReview.getUser_id() + " and movie_id = " + updateReview.getMovie_id();
+        String sql = "update review_api set review_stars = ?, review_content = ? where user_id = " + updateReview.getUser_id() + " and movie_id = " + updateReview.getMovie_id();
 
         try {
             con = DBUtil.getConnection();
@@ -65,7 +65,7 @@ public class ReviewDAOImpl implements ReviewDAO {
         Connection con = null;
         PreparedStatement ps = null;
         int result = 0;
-        String sql = "delete from review where movie_id = ? and user_id = ?";
+        String sql = "delete from review_api where movie_id = ? and user_id = ?";
         try {
             con = DBUtil.getConnection();
             ps = con.prepareStatement(sql);

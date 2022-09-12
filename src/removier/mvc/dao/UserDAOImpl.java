@@ -23,7 +23,7 @@ public class UserDAOImpl implements UserDAO {
         PreparedStatement ps = null;
         ResultSet rs = null;
         User userInfo = null;
-        String sql = "select * from removier_user where login_id = ?";
+        String sql = "select * from removier_api_user where login_id = ?";
         try {
             con = DBUtil.getConnection();
             ps = con.prepareStatement(sql);
@@ -55,7 +55,7 @@ public class UserDAOImpl implements UserDAO {
         PreparedStatement ps = null;
         ResultSet rs = null;
         List<Review> reviews = new ArrayList<>();
-        String sql = "select * from review where user_id = ?";
+        String sql = "select * from review_api where user_id = ?";
         try {
             con = DBUtil.getConnection();
             ps = con.prepareStatement(sql);
@@ -68,7 +68,7 @@ public class UserDAOImpl implements UserDAO {
             }
 
         } finally {
-            DBUtil.close(null, ps, rs);
+            DBUtil.close(con, ps, rs);
         }
         return reviews;
     }
@@ -82,7 +82,7 @@ public class UserDAOImpl implements UserDAO {
 		
 		try {
 			con = DBUtil.getConnection();
-			ps = con.prepareStatement("insert into removier_user values (USER_ID_SEQ.nextval, ?, ?, ?, 1, ?, ?, ?)");
+			ps = con.prepareStatement("insert into removier_api_user values (USER_ID_SEQ.nextval, ?, ?, ?, 1, ?, ?, ?)");
 			ps.setString(1, user.getMember_name());
 			ps.setString(2, user.getLogingId());
 			ps.setString(3, user.getPassword());
@@ -106,7 +106,7 @@ public class UserDAOImpl implements UserDAO {
 		
 		try {
 			con = DBUtil.getConnection();
-			ps = con.prepareStatement("update removier_user set password=?, name=?, favourite_actor=?, favourite_genre=?, phone=? where id=?");
+			ps = con.prepareStatement("update removier_api_user set password=?, name=?, favourite_actor=?, favourite_genre=?, phone=? where id=?");
 			ps.setString(1, loginUser.getPassword());
 			ps.setString(2, loginUser.getMember_name());
 			ps.setString(3, loginUser.getFavourite_actor());
@@ -139,7 +139,7 @@ public class UserDAOImpl implements UserDAO {
 		
 		try {
 			con = DBUtil.getConnection();
-			ps = con.prepareStatement("select * from bookmark where login_id = ?");
+			ps = con.prepareStatement("select * from bookmark_api where login_id = ?");
 			ps.setInt(1, loginUser.getMember_pk());
 			rs = ps.executeQuery();
 			
@@ -161,7 +161,7 @@ public class UserDAOImpl implements UserDAO {
         PreparedStatement ps = null;
         ResultSet rs = null;
         User userInfo = null;
-        String sql = "select * from removier_user where login_id = ?";
+        String sql = "select * from removier_api_user where login_id = ?";
         try {
             con = DBUtil.getConnection();
             ps = con.prepareStatement(sql);
@@ -196,7 +196,7 @@ public class UserDAOImpl implements UserDAO {
 		
 		try {
 			con = DBUtil.getConnection();
-			ps = con.prepareStatement("insert into bookmark values(bookmark_id_seq.nextval, ?, ?, ?)");
+			ps = con.prepareStatement("insert into bookmark_api values(bookmark_api_id_seq.nextval, ?, ?, ?)");
 			ps.setString(1, movie.getMov_title());
 			ps.setInt(2, movie.getMovie_pk());
 			ps.setInt(3, loginUser.getMember_pk());
@@ -216,7 +216,7 @@ public class UserDAOImpl implements UserDAO {
 		
 		try {
 			con = DBUtil.getConnection();
-			ps = con.prepareStatement("DELETE FROM bookmark WHERE MOVIE_ID =? AND LOGIN_ID =?");
+			ps = con.prepareStatement("DELETE FROM bookmark_api WHERE MOVIE_ID =? AND LOGIN_ID =?");
 			ps.setInt(1, movie.getMovie_pk());
 			ps.setInt(2, user.getMember_pk());
 			

@@ -4,33 +4,53 @@ package removier.mvc.dto;
  * 배우 정보
  * */
 public class Actor {
-    private int actor_pk;
-    private String actor_name; // 배우이름
+    private int actorPk;
+    private int movieId;
+    private String name; // 배우이름
+    private String movieName;
+
     private Movie movie;
 
     public Actor() {
     }
 
-    public Actor(int actor_pk, String actor_name, Movie movie) {
-        this.actor_pk = actor_pk;
-        this.actor_name = actor_name;
-        this.movie = movie;
+    public Actor(int actorPk, int movieId, String name, String movieName) {
+        this.actorPk = actorPk;
+        this.movieId = movieId;
+        this.name = name;
+        this.movieName = movieName;
     }
 
-    public int getActor_pk() {
-        return actor_pk;
+    public int getActorPk() {
+        return actorPk;
     }
 
-    public void setActor_pk(int actor_pk) {
-        this.actor_pk = actor_pk;
+    public void setActorPk(int actorPk) {
+        this.actorPk = actorPk;
     }
 
-    public String getActor_name() {
-        return actor_name;
+    public int getMovieId() {
+        return movieId;
     }
 
-    public void setActor_name(String actor_name) {
-        this.actor_name = actor_name;
+    public void setMovieId(int movieId) {
+        this.movieId = movieId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getMovieName() {
+        return movieName;
+    }
+
+    public void setMovieName(String movieName) {
+        this.movieName = movieName;
     }
 
     public Movie getMovie() {
@@ -39,5 +59,16 @@ public class Actor {
 
     public void setMovie(Movie movie) {
         this.movie = movie;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Actor{");
+        sb.append("actorPk=").append(actorPk);
+        sb.append(", movieId=").append(movieId);
+        sb.append(", actorName='").append(name).append('\'');
+        sb.append(", movieName='").append(movieName).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }
