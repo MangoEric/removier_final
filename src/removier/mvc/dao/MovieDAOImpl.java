@@ -160,7 +160,7 @@ public class MovieDAOImpl implements MovieDAO {
         PreparedStatement ps = null;
         ResultSet rs = null;
         Movie movie = null;
-        String sql = "SELECT title from(SELECT rownum, id, title FROM movie WHERE GENRE ='?' ORDER BY id) WHERE rownum =1";
+        String sql = "SELECT title from(SELECT rownum, id, title FROM movie WHERE GENRE =? ORDER BY id) WHERE rownum =1";
 
         try {
             con = DBUtil.getConnection();
@@ -170,14 +170,12 @@ public class MovieDAOImpl implements MovieDAO {
             rs = ps.executeQuery();
 
                 if (rs.next()) {
-                    String mov_title = rs.getString(1);
-                    movie = new Movie(mov_title);
+                    movie = new Movie(rs.getString(1));
                 }
 
         } finally {
             DBUtil.close(con, ps, rs);
         }
-
         return movie;
     }
 

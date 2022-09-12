@@ -194,13 +194,15 @@ public class MenuView {
     public static void printUserMenu(User user) {
         while (true) {
 
-            /*고종영 작성중*/
-            System.out.println(user.getMember_name()+"님의 취향저격 콘텐츠!");
-            MovieController.showBestMyGenreMovie(user);
+
 
             ViewUtil.newLine();
             ViewUtil.printMessage(" ▣ " + user.getLogingId() + " 로그인 중 ");
-            ViewUtil.printMessage(ViewConst.printUserMenu + "\n");
+            ViewUtil.printMessage(ViewConst.printUserMenu);
+            /*고종영 작성중*/
+            ViewUtil.printMessage(user.getMember_name()+"님의 취향저격 콘텐츠!");
+            MovieController.showBestMyGenreMovie(user);
+
             int menu = Integer.parseInt(ViewUtil.input("번호를 입력하세요 ▷ "));
             ViewUtil.newLine();
             switch (menu) {

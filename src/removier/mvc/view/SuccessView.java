@@ -155,6 +155,8 @@ public class SuccessView {
     }
 
     public static void printShowMyBestGenreMovie(Movie movie) {
-        System.out.println(movie.getMov_title());
+        ViewUtil.printMessage("┏━━━━━━━━━┓\n" +
+                              "┃\t"+movie.getMov_title()+"\n"+
+                              "┗━━━━━━━━━┛");
     }
 }
