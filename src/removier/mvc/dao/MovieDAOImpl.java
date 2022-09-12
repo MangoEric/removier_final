@@ -44,7 +44,7 @@ public class MovieDAOImpl implements MovieDAO {
         PreparedStatement ps = null;
         ResultSet rs = null;
         Movie movie = null;
-        String sql = "select * from movie_api where title = ?";
+        String sql = "select * from movie_api where title like ?";
 
         try {
             con = DBUtil.getConnection();
