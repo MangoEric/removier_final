@@ -14,6 +14,7 @@ import removier.mvc.controller.UserController;
 import removier.mvc.dto.Admin;
 import removier.mvc.dto.Notice;
 import removier.mvc.dto.User;
+import removier.mvc.util.PhoneNumberConvertor;
 import removier.mvc.util.ViewUtil;
 
 import java.util.Scanner;
@@ -63,7 +64,14 @@ public class MenuView {
         String registerId = ViewUtil.input("아이디 > ");
         String registerPw = ViewUtil.input("비밀번호 > ");
         String registerName = ViewUtil.input("이름 > ");
-        String registerPhone = ViewUtil.input("휴대폰 > ");
+
+        String registerPhone;
+        do {
+            registerPhone = ViewUtil.input("휴대폰 > ");
+        } while (!PhoneNumberConvertor.supports(registerPhone));
+
+        registerPhone = PhoneNumberConvertor.convert(registerPhone);
+
         String registerFG = ViewUtil.input("=== 1. 멜로 2. 코미디 3. 로맨틱 코미디 4. 액션 =======\r\n"
                 + "=== 5. 스릴러 6. 미스터리 7. 공포 8. 공상과학 9 판타지 ===\r\n"
                 + "선호 장르 > ");
@@ -150,9 +158,9 @@ public class MenuView {
     	
     		switch(menu) {
 				case 1 :
-			        String updatePw = ViewUtil.input("비밀번호 ▷ ");
-			        String updateName = ViewUtil.input("이름 ▷ ");
-					String updateFA = ViewUtil.input("최애 배우 ▷ ");
+			        String updatePw = ViewUtil.input("변경하실 비밀번호 ▷ ");
+			        String updateName = ViewUtil.input("변경하실 이름 ▷ ");
+					String updateFA = ViewUtil.input("변경하실 최애 배우 ▷ ");
 					String updateFG = ViewUtil.input("=== 1. 멜로 2. 코미디 3. 로맨틱 코미디 4. 액션 =======\r\n"
 			        		+ "=== 5. 스릴러 6. 미스터리 7. 공포 8. 공상과학 9 판타지 ===\r\n"
 			        		+ "선호 장르 ▷ ");
@@ -161,6 +169,7 @@ public class MenuView {
 					loginUser = new User(loginUser.getMember_pk(), updateName, loginUser.getLogingId(), updatePw, 1, updatePhone, updateFG, updateFA);
 					
 					UserController.updateUserInfo(loginUser);
+                    loginUser = UserController.updatedUserInfo(loginUser);
 					break;
 					
 				case 2 :

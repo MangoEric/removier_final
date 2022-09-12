@@ -82,7 +82,7 @@ public class UserDAOImpl implements UserDAO {
 		
 		try {
 			con = DBUtil.getConnection();
-			ps = con.prepareStatement("insert into removier_api_user values (USER_ID_SEQ.nextval, ?, ?, ?, 1, ?, ?, ?)");
+			ps = con.prepareStatement("insert into removier_api_user values (USER_api_ID_SEQ.nextval, ?, ?, ?, 1, ?, ?, ?)");
 			ps.setString(1, user.getMember_name());
 			ps.setString(2, user.getLogingId());
 			ps.setString(3, user.getPassword());

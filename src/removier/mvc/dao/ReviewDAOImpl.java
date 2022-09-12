@@ -17,7 +17,7 @@ public class ReviewDAOImpl implements ReviewDAO {
         Connection con = null;
         PreparedStatement ps = null;
         int result = 0;
-        String sql = "insert into review_api values (review_id_seq.nextval, ?, ?, ?, ?, ?, ?)";
+        String sql = "insert into review_api values (review_api_id_seq.nextval, ?, ?, ?, ?, ?, ?)";
 
         try {
             con = DBUtil.getConnection();
