@@ -127,12 +127,12 @@ public class MovieDAOImpl implements MovieDAO {
     }
 
     @Override
-    public Movie showBestMyGenreMovie(String favourite_genre) throws SQLException {
+    public List<Movie> showBestMyGenreMovie(String favourite_genre) throws SQLException {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        Movie movie = null;
-        String sql = "select * from movie_api WHERE genre LIKE '?' AND rownum <= 5 ORDER BY audiacc desc;";
+        List<Movie> movies = new ArrayList<>();
+        String sql = "select * from movie_api WHERE genre LIKE ? AND rownum <= 5 ORDER BY audiacc desc";
 
         try {
             con = DBUtil.getConnection();
@@ -151,17 +151,19 @@ public class MovieDAOImpl implements MovieDAO {
 
                 int audiacc = rs.getInt(7);
 
-                movie = new Movie(movie_pk, mov_title, mov_genre, mov_plot, mov_date, mov_director, audiacc);
+                Movie movie = new Movie(movie_pk, mov_title, mov_genre, mov_plot, mov_date, mov_director, audiacc);
                 List<Review> reviews = getReviews(con, movie.getMovie_pk());
                 movie.setReviewList(reviews);
                 List<Actor> actors = getActors(con, movie.getMovie_pk());
                 movie.setActors(actors);
+
+                movies.add(movie);
             }
         } finally {
             DBUtil.close(con, ps, rs);
         }
 
-        return movie;
+        return movies;
     }
 
     @Override

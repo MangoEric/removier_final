@@ -8,6 +8,8 @@ import removier.mvc.dto.Review;
 import removier.mvc.dto.User;
 import removier.mvc.util.ViewUtil;
 
+import java.util.List;
+
 
 public class SearchMovieView {
     public static void searchMovie(User user) {
@@ -57,6 +59,7 @@ public class SearchMovieView {
             User updatedUser = UserController.updatedUserInfo(user);
             Movie updatedMovie = MovieController.updatedMovieInfo(movie);
             SuccessView.printMovieInfo(updatedMovie);
+
 
             if (updatedMovie.getReviewList() == null || updatedMovie.getReviewList().size() == 0) {
                 ViewUtil.printMessage("작성된 리뷰가 없습니다.");
@@ -171,12 +174,13 @@ public class SearchMovieView {
     }
 
 
-    public static void showTopFive() {
-        MovieController.movieTopFive();
-    }
 
-    public static void showBestMyGenreMovie(User user) {
-        MovieController.showBestMyGenreMovie(user);
+
+
+    public static void showBestMyGenreMovie(User loginUser) {
+        ViewUtil.printMessage(loginUser.getMember_name() + "님의 취향저격 콘텐츠");
+
+
     }
 }
 

@@ -70,9 +70,10 @@ public class MovieController {
 
     public static void showBestMyGenreMovie(User user) {
         try {
-            Movie movie = movieService.showBestMyGenreMovie(user);
+            List<Movie> movies = movieService.showBestMyGenreMovie(user);
             // todo : 뷰 바꿔야됨
-            SearchMovieView.movieResult(UserController.getLoginUser(), movie);
+            SearchMovieView.showBestMyGenreMovie(UserController.getLoginUser());
+            SuccessView.printFavoriteMovie(movies);
         } catch (Exception e) {
             ViewUtil.printMessage(e.getMessage());
         }

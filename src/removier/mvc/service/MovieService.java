@@ -53,12 +53,12 @@ public class MovieService {
     }
 
 
-    public Movie showBestMyGenreMovie(User user) throws Exception {
-        Movie movie = movieDAO.showBestMyGenreMovie(user.getFavourite_genre());
-        if (movie == null) {
-            throw new Exception("해당 영화가 존재하지 않습니다.");
+    public List<Movie> showBestMyGenreMovie(User user) throws Exception {
+        List<Movie> movies = movieDAO.showBestMyGenreMovie(user.getFavourite_genre());
+        if (movies == null || movies.size() == 0) {
+            throw new Exception("취향저격 영화가 존재하지 않습니다.");
         } else {
-            return movie;
+            return movies;
         }
     }
     /*

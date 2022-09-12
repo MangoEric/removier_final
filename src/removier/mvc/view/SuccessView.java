@@ -154,4 +154,12 @@ public class SuccessView {
         }
         return result.toString();
     }
+
+    public static void printFavoriteMovie(List<Movie> movies) {
+        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━┓");
+        for (Movie movie : movies) {
+            System.out.println("┃ \t" + movie.getMov_title());
+        }
+        System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━┛");
+    }
 }

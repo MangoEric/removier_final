@@ -2,6 +2,7 @@ package removier.mvc.view;
 
 
 
+import removier.mvc.controller.MovieController;
 import removier.mvc.controller.NoticeController;
 
 import removier.mvc.controller.AdminController;
@@ -205,11 +206,12 @@ public class MenuView {
             ViewUtil.newLine();
             ViewUtil.printMessage(" ▣ " + user.getLogingId() + " 로그인 중 ");
             ViewUtil.printMessage(ViewConst.printUserMenu + "\n");
+            MovieController.showBestMyGenreMovie(user);
             int menu = Integer.parseInt(ViewUtil.input("번호를 입력하세요 ▷ "));
             ViewUtil.newLine();
             switch (menu) {
                 case 1:
-                    SearchMovieView.showTopFive();
+                    MovieController.movieTopFive();
                     break;
                 case 2:
                     SearchMovieView.searchMovie(user);
