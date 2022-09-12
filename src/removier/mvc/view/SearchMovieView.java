@@ -44,7 +44,7 @@ public class SearchMovieView {
     }
 
     private static String searchMovieTitle() {
-        ViewUtil.printMessage("=== 영화이름을 검색하세요 (정확한 영화이름으로 검색하세요!!) ===");
+        ViewUtil.printMessage("=== 영화이름을 검색하세요 ===");
         return ViewUtil.input("영화이름 > ");
     }
 
