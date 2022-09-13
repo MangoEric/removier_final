@@ -37,7 +37,8 @@ public class MenuView {
                     break;
                 case 2:
                     User requestLoginUser = MenuView.login();
-                    UserController.login(requestLoginUser);// 로그인
+                        UserController.login(requestLoginUser);// 로그인
+
                     break;
                 case 7:
                     MenuView.adminLogin();// 관리자 로그인
@@ -73,8 +74,8 @@ public class MenuView {
 
         registerPhone = PhoneNumberConvertor.convert(registerPhone);
 
-        String registerFG = ViewUtil.input("=== 1. 멜로 2. 코미디 3. 로맨틱 코미디 4. 액션 =======\r\n"
-                + "=== 5. 스릴러 6. 미스터리 7. 공포 8. 공상과학 9 판타지 ===\r\n"
+        String registerFG = ViewUtil.input("=== 멜로, 코미디, 애니메이션, 액션 ===\r\n"
+                + "=== 스릴러, 미스터리, 공포, 공상과학, 판타지 ===\r\n"
                 + "선호 장르 > ");
         String registerFA = ViewUtil.input("최애 배우 > ");
 
@@ -142,7 +143,7 @@ public class MenuView {
         }
 
     }
-    private static void showMyPage() {
+    private static int showMyPage() {
     	User loginUser = UserController.updatedUserInfo(UserController.getLoginUser());
     	while(true) {
     		int menu = Integer.parseInt(
@@ -162,19 +163,25 @@ public class MenuView {
 			        String updatePw = ViewUtil.input("변경하실 비밀번호 ▷ ");
 			        String updateName = ViewUtil.input("변경하실 이름 ▷ ");
 					String updateFA = ViewUtil.input("변경하실 최애 배우 ▷ ");
-					String updateFG = ViewUtil.input("=== 1. 멜로 2. 코미디 3. 로맨틱 코미디 4. 액션 =======\r\n"
-			        		+ "=== 5. 스릴러 6. 미스터리 7. 공포 8. 공상과학 9 판타지 ===\r\n"
-			        		+ "선호 장르 ▷ ");
-					String updatePhone = ViewUtil.input("연락처 ▷ ");	
+					String updateFG = ViewUtil.input("=== 멜로, 코미디, 애니메이션, 액션 ===\r\n"
+                            + "=== 스릴러, 미스터리, 공포, 공상과학, 판타지 ===\r\n"
+                            + "선호 장르 > ");
+                    String registerPhone;
+                    do {
+                        registerPhone = ViewUtil.input("휴대폰 > ");
+                    } while (!PhoneNumberConvertor.supports(registerPhone));
+
+                    registerPhone = PhoneNumberConvertor.convert(registerPhone);
 					
-					loginUser = new User(loginUser.getMember_pk(), updateName, loginUser.getLogingId(), updatePw, 1, updatePhone, updateFG, updateFA);
+					loginUser = new User(loginUser.getMember_pk(), updateName, loginUser.getLogingId(), updatePw, 1, registerPhone, updateFG, updateFA);
 					
 					UserController.updateUserInfo(loginUser);
                     loginUser = UserController.updatedUserInfo(loginUser);
-					break;
+                    return 1;
+//					break;
 					
 				case 2 :
-                    ViewUtil.printMessage("<내가 작성한 리뷰>");
+                    ViewUtil.printMessage("\n┏━━━━━━ 내가 작성한 리뷰 ━━━━━━┓");
                     UserController.getMyReview(loginUser);
 
 					break;
@@ -184,7 +191,7 @@ public class MenuView {
 					break;
 					
 				case 4 :
-					return;
+					return 0;
 				}
     	}
 	}
@@ -205,7 +212,7 @@ public class MenuView {
 
             ViewUtil.newLine();
             ViewUtil.printMessage(" ▣ " + user.getLogingId() + " 로그인 중 ");
-            ViewUtil.printMessage(ViewConst.printUserMenu + "\n");
+            ViewUtil.printMessage(ViewConst.printUserMenu);
             MovieController.showBestMyGenreMovie(user);
             int menu = Integer.parseInt(ViewUtil.input("번호를 입력하세요 ▷ "));
             ViewUtil.newLine();
@@ -220,8 +227,11 @@ public class MenuView {
                     NoticeController.noticeSelectByAll();
                     break;
                 case 4:
-                    showMyPage();
-                    break;
+                    if(showMyPage()==0){
+                        break;
+                    } else {
+                        return;
+                    }
                 case 5:
                     logout(user);
                     return;

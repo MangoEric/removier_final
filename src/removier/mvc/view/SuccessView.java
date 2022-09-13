@@ -41,11 +41,12 @@ public class SuccessView {
 
 
     public static void printBookmarkByUser(List<Bookmark> bookmarks) {
-        System.out.println("나의 즐겨찾기");
+        System.out.println("┏━ 나의 즐겨찾기 목록 ━━");
         //System.out.println("나의 즐겨찾기" + bookmarks.size() + "개");
         for (Bookmark bm : bookmarks) {
-            System.out.println(bm.getMovie_title());
+            System.out.println("┃ \t" + bm.getMovie_title());
         }
+        System.out.println("┗━━━━━━━━━━━━━━━━━━┛");
     }
 
     public static void printMovieReview(List<Review> reviews) {
@@ -99,6 +100,7 @@ public class SuccessView {
     }
 
     public static void printMovieGenre(List<Movie> movies) {
+        System.out.println("\n┏━"+ movies.get(0).getMov_genre() +" 검색 결과 ━━");
         for (Movie movie : movies) {
             ViewUtil.printMessage(" ▥영화명   : " + movie.getMov_title());
             ViewUtil.printMessage(" ▥영화감독 : " + movie.getMov_director());
@@ -109,6 +111,7 @@ public class SuccessView {
     }
 
     public static void printMovieOfActor(List<Actor> actors) {
+        System.out.println("\n┏━ "+actors.get(0).getName()+" 검색 결과 ━━━━━━━━━━━");
         for (Actor actor : actors) {
             ViewUtil.printMessage(" ▥영화명   : " + actor.getMovieName());
             System.out.println("━━━━━━━━━━━━━━━━━━━━━━━━━━━");
@@ -156,10 +159,10 @@ public class SuccessView {
     }
 
     public static void printFavoriteMovie(List<Movie> movies) {
-        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━┓");
+        System.out.println("┏━━━━━━━━━━━━━┓");
         for (Movie movie : movies) {
             System.out.println("┃ \t" + movie.getMov_title());
         }
-        System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━┛");
+        System.out.println("┗━━━━━━━━━━━━━┛");
     }
 }
