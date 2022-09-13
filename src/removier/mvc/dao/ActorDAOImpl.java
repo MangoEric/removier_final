@@ -12,6 +12,11 @@ import java.util.List;
 
 public class ActorDAOImpl implements ActorDAO{
 
+    /**
+     * 영화배우 이름으로 검색
+     * @param : 검색받은 Actor 를 인수로 받는다
+     * @return : list 형태로 리턴한다.
+     * */
     public List<Actor> movieSelectByActor(String actor_name) throws SQLException {
         Connection con = null;
         PreparedStatement ps = null;

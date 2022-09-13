@@ -67,7 +67,9 @@ public class MovieController {
          }
     }
 
-
+    /**
+     * 나의 최애 장르 바탕으로 영화 출력
+     * */
     public static void showBestMyGenreMovie(User user) {
         try {
             List<Movie> movies = movieService.showBestMyGenreMovie(user);

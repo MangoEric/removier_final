@@ -118,6 +118,9 @@ public class UserController {
 		}
 	}
 
+	/**
+	 * 리뷰 정보 조회
+	 * */
 	public static void getMyReview(User user) {
 		try {
 			User userInfo = userService.getMyReview(user);

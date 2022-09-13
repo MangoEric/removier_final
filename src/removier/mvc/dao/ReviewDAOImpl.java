@@ -11,6 +11,12 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class ReviewDAOImpl implements ReviewDAO {
+
+    /**
+     * 리뷰 작성
+     * @param : 작성된 review 를 인수로 받는다.
+     * @return : int 로 리뷰 삽입 성공 여부를 리턴한다.
+     * */
     @Override
     public int reviewInsert(Review review) throws SQLException {
         // int review_pk, int review_stars, String review_content, User user, Movie movie
@@ -37,6 +43,12 @@ public class ReviewDAOImpl implements ReviewDAO {
         return result;
     }
 
+
+    /**
+     * 리뷰 수정
+     * @param : 수정된 review 를 인수로 받는다.
+     * @return : int 로 리뷰 삽입 성공 여부를 리턴한다.
+     * */
     @Override
     public int reviewUpdate(Review updateReview) throws SQLException {
         // int review_pk, int review_stars, String review_content, User user, Movie movie
@@ -60,6 +72,11 @@ public class ReviewDAOImpl implements ReviewDAO {
         return result;
     }
 
+    /**
+     * 리뷰 삭제
+     * @param : 삭제할 review 를 인수로 받는다. User 의 정보를 인수로 받는다.
+     * @return : int 로 리뷰 삽입 성공 여부를 리턴한다.
+     * */
     @Override
     public int reviewDelete(User user, Movie movie) throws SQLException {
         Connection con = null;

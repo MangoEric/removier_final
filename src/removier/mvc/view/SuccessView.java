@@ -83,7 +83,7 @@ public class SuccessView {
     }
 
     /**
-     * 회원정보 전부 출력
+     * 관리자페이지에서 회원정보 전부 출력
      */
     public static void printUserAllList(List<User> list) {
         System.out.println();

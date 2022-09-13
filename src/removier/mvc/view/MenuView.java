@@ -24,6 +24,10 @@ import java.util.Scanner;
 public class MenuView {
     static Scanner sc = new Scanner(System.in);
 
+
+    /**
+     * 시작 메뉴 : 회원가입, 로그인, 프로그램 종료
+     * */
     public static void menu() {
         while (true) {
 
@@ -49,6 +53,9 @@ public class MenuView {
         }
     }
 
+    /**
+     * 화면이 시작되서 메뉴를 출력한다.
+     * */
     public static void printMenu() {
 
         ViewUtil.printMessage(ViewConst.banner);
@@ -60,7 +67,7 @@ public class MenuView {
 
 
     /**
-     * 가입
+     * 회원 가입 : 정보를 제공받아서 User 객체를 db에 등록한다.
      */
     private static void register() {
         String registerId = ViewUtil.input("아이디 > ");
@@ -85,7 +92,7 @@ public class MenuView {
     }
 
     /**
-     * 로그인 메뉴
+     * 로그인 메뉴 : id & password 를 입력받는다.
      */
     public static User login() {
 
@@ -100,7 +107,7 @@ public class MenuView {
     }
 
     /**
-     * 관리자 로그인
+     * 관리자 로그인 : 관리자 id , password 를 입력받는다.
      * */
     public static void adminLogin(){
         System.out.println("==========[관리자 로그인]==========");
@@ -112,6 +119,10 @@ public class MenuView {
         AdminController.login(admin);
     }
 
+    /**
+     * 관리장 계정 로그인
+     * @param : admin 을 객체로 받는다.
+     * */
     public static void printAdminMenu(Admin admin) {
 
         while (true) {
@@ -143,6 +154,11 @@ public class MenuView {
         }
 
     }
+
+
+    /**
+     * user 가 로그인 한 후 My page 를 조회한다.
+     * */
     private static int showMyPage() {
     	User loginUser = UserController.updatedUserInfo(UserController.getLoginUser());
     	while(true) {
@@ -201,11 +217,16 @@ public class MenuView {
 
 
     /**
-     * 로그아웃
+     * 로그아웃 : user 가 로그아웃을 진행한다.
      */
     public static void logout(User loginUser) {
         UserController.logout(loginUser);
     }
+
+    /**
+     * 유저 메뉴를 출력한다
+     * @param : 로그인할때 얻어온 User 객체를 받는다.
+     * */
 
     public static void printUserMenu(User user) {
         while (true) {
@@ -257,7 +278,9 @@ public class MenuView {
         NoticeController.noticeInsert(notice);
     }
 
-    /*공지사항 수정*/
+    /**
+     * 공지사항 수정
+     * */
     public static void inputUpdateNotice() {
         ViewUtil.printMessage("공지사항 수정해주세요.\n");
 
@@ -269,7 +292,9 @@ public class MenuView {
         NoticeController.noticeUpdate(notice);
     }
 
-    /*공지사항 삭제*/
+    /**
+     * 공지사항 삭제
+     * */
     public static void inputDeleteNotice() {
         int notice_pk = Integer.parseInt(ViewUtil.input("삭제 게시물 번호 ▷ "));
         NoticeController.noticeDelete(notice_pk);

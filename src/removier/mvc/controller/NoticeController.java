@@ -17,8 +17,8 @@ public class NoticeController {
 	private static NoticeService noticeService = new NoticeService();
 	static Scanner s = new Scanner(System.in);
 	
-	/*
-	 * 게시물 전체 검색하기
+	/**
+	 * 공지사항 전체 조회하기
 	 * */
 	public static void noticeSelectByAll() {
 		//호출
@@ -49,7 +49,9 @@ public class NoticeController {
 		}	
 		
 	}	
-	
+	/**
+	 * 되돌아가기 method
+	 * */
 	private static String inData(String st) {
 		System.out.print(st+" : ");
 		return s.next();

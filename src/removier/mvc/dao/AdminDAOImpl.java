@@ -13,6 +13,11 @@ import java.util.List;
 
 public class AdminDAOImpl implements AdminDAO{
 
+    /**
+     * 관리자 로그인
+     * @param : Admin 으로 받는다
+     * @return : 로그인 한 Admin 을 리턴
+     * */
     @Override
     public Admin login(Admin admin) throws SQLException {
         Connection con = null;
@@ -37,6 +42,10 @@ public class AdminDAOImpl implements AdminDAO{
         return admin1;
     }
 
+    /**
+     * 관리자 - 회원 조회
+     * @return : 회원 정보를 List 로 리턴한다.
+     * */
     @Override
     public List<User> userSelectAll() throws SQLException {
         Connection con=null;

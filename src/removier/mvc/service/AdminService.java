@@ -14,7 +14,8 @@ public class AdminService {
     static AdminService adminService = new AdminService();
     /***
      * 관리자 로그인
-     * @param :
+     * @param : admin 을 전달 받는다.
+     * @return : 로그인된 Admin 을 리턴
      */
     public Admin adminLogin(Admin admin) throws Exception{
         Admin admin1 = adminDAO.login(admin);
@@ -25,6 +26,7 @@ public class AdminService {
     }
     /**
      * 전체 회원 정보 조회
+     * @return : 회원정보를 모두 list 로 전달
      * */
     public List<User> userSelectAll() throws SQLException {
         List<User> list = adminDAO.userSelectAll();

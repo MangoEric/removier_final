@@ -13,6 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MovieDAOImpl implements MovieDAO {
+
+    /**
+     * 최신 영화 top 5 조회
+     * @return : 최신 영화 top5 를 list 형태로 리턴한다.
+     * */
     @Override
     public List<Movie> movieTopFive() throws SQLException {
 
@@ -38,6 +43,11 @@ public class MovieDAOImpl implements MovieDAO {
         return list;
     }
 
+    /**
+     * 영화 이름으로 검색
+     * @param : 검색받은 영화 제목을 String 으로 받는다.
+     * @return : 해당 하는 영화를 Movie 로 리턴한다.
+     * */
     @Override
     public Movie movieSelectByMovieTitle(String move_title) throws SQLException {
         Connection con = null;
@@ -77,6 +87,10 @@ public class MovieDAOImpl implements MovieDAO {
         return movie;
     }
 
+    /**
+     * 내가 쓴 리뷰 조회
+     * @return : 해당 하는 영화리뷰를 list 로 리턴한다.
+     * */
     private List<Review> getReviews(Connection con, int movie_pk) throws SQLException {
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -99,6 +113,11 @@ public class MovieDAOImpl implements MovieDAO {
         return reviews;
     }
 
+    /**
+     * 영화 장르로 검색
+     * @param : 검색받은 영화 장르를 String 으로 받는다.
+     * @return : 해당 하는 영화를 list 로 리턴한다.
+     * */
     @Override
     public List<Movie> movieSelectByGenre(String mov_genre) throws SQLException {
         Connection con = null;
@@ -126,6 +145,12 @@ public class MovieDAOImpl implements MovieDAO {
         return movies;
     }
 
+
+    /**
+     * 나의 최애 장르로 영화 추천
+     * @param : 나의 정보 중, 최애 장르를 인수로 받는다.
+     * @return : 해당 하는 영화를 list 로 리턴한다.
+     * */
     @Override
     public List<Movie> showBestMyGenreMovie(String favourite_genre) throws SQLException {
         Connection con = null;
@@ -166,6 +191,7 @@ public class MovieDAOImpl implements MovieDAO {
         return movies;
     }
 
+
     @Override
     public Movie updatedMovieInfo(Movie movie) throws Exception {
         Connection con = null;
@@ -204,6 +230,11 @@ public class MovieDAOImpl implements MovieDAO {
         return updatedMovie;
     }
 
+
+    /**
+     * 영화 배우 정보 조회
+     * @return : 해당 하는 영화의 영화배우 정보를 list 로 리턴한다.
+     * */
     private List<Actor> getActors(Connection con, int movie_pk) throws SQLException {
         PreparedStatement ps = null;
         ResultSet rs = null;

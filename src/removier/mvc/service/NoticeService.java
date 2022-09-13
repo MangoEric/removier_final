@@ -11,7 +11,9 @@ public class NoticeService {
 	
 	NoticeDAO noticeDao = new NoticeDAOImpl();
 	
-	//공지사항 목록보기
+	/**공지사항 목록보기
+	 * @return : 공지사항을 list 로 리턴
+	 * */
 	public List<Notice> noticeSelectAll() throws SQLException {
 		List<Notice> list = noticeDao.noticeSelectAll();
 		if(list.size() == 0 || list.isEmpty()) {
@@ -20,19 +22,25 @@ public class NoticeService {
 		return list;
 	}
 
-	//등록
+	/** 공지사항 등록
+	 * @param : 작성받은 공지사항을 notice 로 받는다.
+	 * */
 	public void noticeInsert(Notice notice) throws SQLException {
 		if(noticeDao.noticeInsert(notice) == 0)
 			throw new SQLException("게시물이 등록되지 않았습니다."); 
 	}
 
-	//수정 
+	/** 공지사항 수정
+	 * @param : 수정된 Notice 를 인수로 받는다.
+	 * */
 	public void noticeUpdate(Notice notice) throws SQLException {
 		if(noticeDao.noticeUpdate(notice) == 0)
 		throw new SQLException("수정되지 않았습니다.");		
 	}
 
-	//삭제
+	/**
+	 * 공지사항 삭제
+	 * */
 	public void noticeDelete(int no) throws SQLException {
 		if(noticeDao.noticeDelete(no) == 0)
 		throw new SQLException("삭제되지 않았습니다.");		

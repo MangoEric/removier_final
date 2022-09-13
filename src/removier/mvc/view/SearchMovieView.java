@@ -12,6 +12,11 @@ import java.util.List;
 
 
 public class SearchMovieView {
+
+    /**
+     * 영화 검색 method
+     * @param : User 를 받는다.
+     * */
     public static void searchMovie(User user) {
         ViewUtil.printMessage("----- 현재 로그인된 사용자 : " + user.getLogingId() + " -----");
         ViewUtil.printMessage("★★★★★★★★★★★  영화검색  ★★★★★★★★★★★");
@@ -36,6 +41,10 @@ public class SearchMovieView {
         }
     }
 
+    /**
+     * 영화 장르를 검색을 받는다
+     * @return : 해당 영화장르를 String 으로 리턴한다.
+     * */
     private static String searchMovieGenre() {
         ViewUtil.printMessage("================ 영화장르를 검색하세요 ================");
         System.out.println();
@@ -43,16 +52,29 @@ public class SearchMovieView {
 
     }
 
+    /**
+     * 영화 제목으로 검색을 받는다
+     * @return : 입력받은 영화 제목을 String 으로 리턴한다.
+     * */
     private static String searchMovieTitle() {
         ViewUtil.printMessage("=== 영화이름을 검색하세요 ===");
         return ViewUtil.input("영화이름 > ");
     }
 
+
+    /**
+     * 영화 배우를 검색을 받는다
+     * @return : 입력받은 영화배우를 리턴한다.
+     * */
     private static String searchActorName() {
         ViewUtil.printMessage("=== 배우이름을 검색하세요 ===");
         return ViewUtil.input("배우이름 > ");
     }
 
+    /**
+     * 영화 검색결과 출력
+     * @param : User 정보와, Movie 를 객체로 받는다
+     * */
     public static void movieResult(User user, Movie movie) throws Exception {
         boolean run = true;
         while (run) {
@@ -127,10 +149,19 @@ public class SearchMovieView {
         }
     }
 
+    /**
+     * 리뷰 삭제
+     * @param : User 와 Movie 를 객체로 받는다.
+     * */
     private static void deleteReview(User user, Movie movie) {
         ReviewController.deleteReview(user, movie);
     }
 
+    /**
+     * 리뷰 내용을 수정한다
+     * @param : User 객체와 Moive 객체를 전달받는다.
+     * @return : 수정된 Review 객체를 리턴한다.
+     * */
     private static Review updateReview(User user, Movie movie) {
         int review_star = 0;
         String review_contents = null;
@@ -149,7 +180,11 @@ public class SearchMovieView {
         return review;
     }
 
-
+    /**
+     * 리뷰 생성
+     * @param : User 객체와 Moive 객체를 전달받는다.
+     * @return : 작성된 Review 객체 리턴
+     * */
     private static Review createReview(User user, Movie movie) {
         int review_star = 0;
         String review_contents = null;
@@ -169,14 +204,18 @@ public class SearchMovieView {
         }
     }
 
+    /**
+     * 별점은 0~5 점 사이만 등록된다
+     * @return : boolean 형으로 리턴
+     * */
     private static boolean isNotValidRange(int review_star) {
         return review_star < 0 || review_star > 5;
     }
 
-
-
-
-
+    /**
+     * 취향 저격 콘텐츠 영화 출력
+     * @param : 로그인한 User 의 정보를 받는다.
+     * */
     public static void showBestMyGenreMovie(User loginUser) {
         ViewUtil.printMessage(loginUser.getMember_name() + "님의 취향저격 콘텐츠");
 

@@ -17,6 +17,11 @@ import removier.mvc.util.DBUtil;
 
 public class UserDAOImpl implements UserDAO {
 
+	/**
+	 * 로그인 기능
+	 * @param : 입력받은 User 를 인수로 받느다
+	 * @return : 로그인한 User 를 리턴한다.
+	 * */
     @Override
     public User login(User user) throws SQLException { //user는 id, password 담고 있다.
         Connection con = null;
@@ -50,6 +55,11 @@ public class UserDAOImpl implements UserDAO {
         return userInfo; //
     }
 
+	/**
+	 * 리뷰 조회
+	 * @param : 입력받은 User 를 인수로 받느다
+	 * @return : 리뷰를 list 로 리턴한다.
+	 * */
     private List<Review> getReviews(User userInfo) throws SQLException {
         Connection con = null;
         PreparedStatement ps = null;
@@ -73,7 +83,11 @@ public class UserDAOImpl implements UserDAO {
         return reviews;
     }
 
-
+	/**
+	 * 회원가입
+	 * @param : 입력받은 User 를 인수로 받느다
+	 * @return : int 로 회원가입 여부를 출력
+	 * */
 	@Override
 	public int signUp(User user) throws SQLException {
 		Connection con = null;
@@ -98,6 +112,11 @@ public class UserDAOImpl implements UserDAO {
 		return result;
 	}
 
+	/**
+	 * 회원정보 수정
+	 * @param : 로그인 받은 User 를 받아온다
+	 * @return : int 로 성공 여부를 리턴한다.
+	 * */
 	@Override
 	public int updateUserInfo(User loginUser) throws SQLException {
 		Connection con = null;
@@ -123,13 +142,20 @@ public class UserDAOImpl implements UserDAO {
 		return result;
 	}
 
-
+	/**
+	 * 로그아웃
+	 * */
 	@Override
 	public int logout(User loginUser) throws SQLException {
 		return 0;
 	}
 
 
+	/**
+	 * 즐겨찾기 조회
+	 * @param : 로그인한 User 를 받아온다
+	 * @return : 즐겨찾기 를 list 로 리턴한다.
+	 * */
 	@Override
 	public List<Bookmark> selectBookmarkByUser(User loginUser) throws SQLException {
 		Connection con = null;
@@ -153,8 +179,12 @@ public class UserDAOImpl implements UserDAO {
 		}
 		
 		return bookmarks;
-	}	
+	}
 
+	/**
+	 * 나의 리뷰 조회
+	 * @param : 로그인한 User 를 받아온다
+	 * */
     @Override
     public User getMyReview(User user) throws Exception {
         Connection con = null;
@@ -188,6 +218,12 @@ public class UserDAOImpl implements UserDAO {
         return userInfo;
     }
 
+
+	/**
+	 * 즐겨찾기 추가
+	 * @param : 로그인 한 User 와 즐겨찾기에 추가할 Movie 를 받는다.
+	 * @return : int 로 성공여부 리턴
+	 * */
 	@Override
 	public int addBookmark(User loginUser, Movie movie) throws SQLException {
 		Connection con = null;
@@ -208,6 +244,11 @@ public class UserDAOImpl implements UserDAO {
 		return result;
 	}
 
+	/**
+	 * 즐겨찾기 삭제
+	 * @param : 로그인한 User 와 삭제할 Movie 를 객체로 받는다
+	 * @return : 삭제 성공 여부를 int 로 리턴한다.
+	 * */
 	@Override
 	public int deleteBookmark(User user, Movie movie) throws SQLException {
 		Connection con = null;

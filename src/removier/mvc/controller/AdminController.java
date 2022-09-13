@@ -51,6 +51,10 @@ public class AdminController {
 			return ;
 		}
 	}
+
+	/**
+	 * 되돌아가기 method
+	 * */
 	private static String inData(String st) {
 		System.out.print(st+" : ");
 		return s.next();

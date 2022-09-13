@@ -17,7 +17,8 @@ public class MovieService {
     private ActorDAO actorDAO = new ActorDAOImpl();
     /**
      * 영화이름 검색
-     * @param movieTitle
+     * @param : 영화 제목을 인수로 받는다.
+     * @return : 제목에 일치하는 Movie 를 객체로 리턴한다.
      */
     public Movie searchMovieTitle(String movieTitle) throws Exception {
         Movie movie = movieDAO.movieSelectByMovieTitle(movieTitle);
@@ -30,7 +31,8 @@ public class MovieService {
 //        return Movie.getFixture();
         /**
          * 배우이름 검색
-         * @param actorName
+         * @param : actorName
+         * @return : Actor 를 리턴한다.
          */
         public List<Actor> searchActorName(String actorName) throws Exception {
         	List<Actor> actors = actorDAO.movieSelectByActor(actorName);
@@ -43,6 +45,7 @@ public class MovieService {
 
     /**
      * 영화 top5 검색
+     * @return : list 형태로 영화를 리턴
      * */
 
     public List<Movie> showTopFive() throws Exception {
@@ -52,7 +55,11 @@ public class MovieService {
         return list;
     }
 
-
+    /**
+     * User 의 취향 저격 콘텐츠
+     * @param : 로그인한 User 를 인수로 받는다
+     * @return : 해당 장르에 맞는 movie 를 list 로 리턴한다.
+     * */
     public List<Movie> showBestMyGenreMovie(User user) throws Exception {
         List<Movie> movies = movieDAO.showBestMyGenreMovie(user.getFavourite_genre());
         if (movies == null || movies.size() == 0) {
@@ -61,8 +68,10 @@ public class MovieService {
             return movies;
         }
     }
-    /*
+    /**
      * 영화 장르 검색
+     * @param : String 으로 입력받은 영화 장르를 받는다
+     * @return : list 형태로 movie 들을 리턴한다
      * */
 	public List<Movie> searchMovieGenre(String movieGenre) throws Exception {
 		 List<Movie> movieList = movieDAO.movieSelectByGenre(movieGenre);
