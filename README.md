@@ -1,4 +1,7 @@
 # 🎬 Removier
+<div align="center">
+<img src="https://user-images.githubusercontent.com/104367020/215094550-e1ecf2fd-387b-4c35-a5dc-1e2d10c134f0.gif" alt="main">
+</div>
 
 ## 1️⃣  프로젝트 개요도
 
@@ -101,4 +104,10 @@
     <td>-회원가입 기능(회원 정보 등록 기능)<br>-로그인/로그아웃 기능</td>
     <td>회원</td>
   </tr>
-</talbe>
+</table>
+
+
+
+<div align="right">
+written By JongYoung
+</div>
