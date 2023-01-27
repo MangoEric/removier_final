@@ -1,5 +1,4 @@
-# 🎬 removier_final
-1st kosta mini project
+# 🎬 Removier
 
 ## 1️⃣  프로젝트 개요도
 
@@ -9,15 +8,31 @@
 - 구성원 : 강희진, 고종영, 권규정, 이혜진, 장민정
 - 프로젝트 개요 :
 
-영화 티켓 16,000원 시대! 소비자들은 재미없는 영화를 보고싶어하지 않는다!
+영화 티켓 16,000원 시대! 소비자들은 재미없는 영화를 보고싶어하지 않는다!<br>
+다른 회원들의 영화 리뷰를 ‘리무버’를 통해 미리 확인하며 자신이 볼 영화를 선택할 수 있다.<br>
+또한 자신이 남긴 리뷰를 통해서 다른 소비자에게 도움을 준다!<br>
+이를 통해서 영화 관계자는 소비자들의 별점, 리뷰를 확인함으로써, 영화관계자는 회원의 니즈를 파악 할 수 있다!<br>
 
-다른 회원들의 영화 리뷰를 ‘리무버’를 통해 미리 확인하며 자신이 볼 영화를 선택할 수 있다.
+## 2️⃣ 개발환경
 
-또한 자신이 남긴 리뷰를 통해서 다른 소비자에게 도움을 준다!
+![java badge](https://img.shields.io/badge/-JAVA_11-%23F7DF1E?style=flat-square&logo=buymeacoffee&logoColor=white&color=3c679e)
+![oracle badge](https://img.shields.io/badge/-Oracle_19c-%23F7DF1E?style=flat-square&logo=oracle&logoColor=white&color=e62e18)<br>
+![IntelliJ IDEA badge](https://img.shields.io/badge/-IntelliJ_IDEA-%23F7DF1E?style=flat-square&logo=intellijidea&logoColor=white&color=02303A)
+![eclipseide badge](https://img.shields.io/badge/-Eclipse-%23F7DF1E?style=flat-square&logo=eclipseide&logoColor=white&color=2C2255)
+![notion badge](https://img.shields.io/badge/-Notion-%23F7DF1E?style=flat-square&logo=notion&logoColor=white&color=000000)
 
-이를 통해서 영화 관계자는 소비자들의 별점, 리뷰를 확인함으로써, 영화관계자는 회원의 니즈를 파악 할 수 있다!
+## 3️⃣ 프로젝트 실행 화면
+- 프로젝트 대한 내용을 Youtube 로 영상으로 기록하였습니다.
 
-## 2️⃣ 시스템에 대한 기능적인 요구사항 목록
+<div align="center">
+
+[![Video Label](http://img.youtube.com/vi/stXpZRD2sZc/0.jpg)](https://youtu.be/stXpZRD2sZc)
+
+</div>
+
+
+
+## 4️⃣ 시스템에 대한 기능적인 요구사항 목록
 
 <table>
   <tr>
@@ -51,8 +66,7 @@
 </table>
 
 
-## 3️⃣ 기능별 액터 목록
-
+## 5️⃣ 기능별 액터 목록
 
 <table>
   <tr>
