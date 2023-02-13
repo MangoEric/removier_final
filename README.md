@@ -108,6 +108,4 @@
 
 
 
-<div align="right">
-written By JongYoung
-</div>
+
